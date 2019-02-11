@@ -1,0 +1,90 @@
+#!/usr/bin/env python3
+
+from sys import argv
+from math import factorial
+from math import exp
+from time import time
+
+for i in range(len(argv)):
+	if (argv[i] == "-h"):
+		print("USAGE")
+		print("\t%s [n k | d]\n" % argv[0])
+		print("DESCRIPTION")
+		print("\tn\tn value for the computation of (n k)\x1b[23m")
+		print("\tk\tk value for the computation of (n k)")
+		print("\td\tkaverage duration of calls (in seconds)")
+		exit(0)
+
+if ((len(argv) in range(2, 4)) == False):
+	exit(84)
+
+def check_args(n):
+	for i in range (1, n):
+		try:
+			int(argv[i])
+		except ValueError:
+			exit(84)
+
+check_args(len(argv))
+arg_list = []
+for i in range(1, len(argv)):
+	arg_list.append(int(argv[i]))
+
+def binomial_coef(n, k):
+	try:
+		val = factorial(n) // (factorial(k) * factorial(n - k))
+	except ZeroDivisionError:
+		return (1)
+	return (val)
+
+if (len(argv) == 3):
+	print("%d-combination of a %d set:" % (arg_list[1], arg_list[0]))
+	print("%d" % binomial_coef(arg_list[0], arg_list[1]))
+	exit(0)
+
+def binom(duration, ppl):
+	prob = duration / (3600 * 8)
+	K = ppl
+	N = 3500.0
+	total = binomial_coef(N, K)
+	total *= pow(prob, K)
+	total *= pow(1 - prob, N - K)
+	return(total)
+
+def poisson(duration, ppl):
+	l = 3500 * (duration / (3600 * 8))
+	return(exp(-l) * pow(l, ppl) / factorial(ppl))
+
+def print_arr(arr):
+	for i in range(0, 51):
+		print("%d -> %.3f" % (i, arr[i]), end='')
+		if (i % 6 == 5):
+			print("")
+		elif (i != 50):
+			print("\t", end='')
+
+if (len(argv) == 2):
+	print("Binomial distribution:")
+	start = time()
+	arr = [float(0)] * 51
+	overload = float(1)
+	for i in range(0, 51):
+		arr[i] = binom(arg_list[0], i)
+		if (i <= 26):
+			overload -= arr[i - 1]
+	end = time()
+	print_arr(arr)
+	print("\noverload:\t%.1f%%" % (abs(overload) * 100))
+	print("computation time: %.2f ms\n" % ((end - start) * 1000))
+	print("Poisson distribution:")
+	start = time()
+	overload = 1
+	for i in range(0, 51):
+		arr[i] = poisson(arg_list[0], i)
+		if (i <= 26):
+			overload -= arr[i - 1]
+	end = time()
+	print_arr(arr)
+	print("\noverload:\t%.1f%%" % (abs(overload) * 100))
+	print("computation time: %.2f ms" % ((end - start) * 1000))
+exit(0)

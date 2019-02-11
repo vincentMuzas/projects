@@ -1,0 +1,64 @@
+#!/usr/bin/env python3
+
+from sys import *
+from math import *
+
+def check_arg(index, mod):
+	if mod == 0:
+		if argv[index].isdigit() == False:
+			exit(84)
+	elif mod == 1:
+		if argv[index].replace('.', '', 1).isdigit() == False:
+			exit(84)
+
+if (len(argv) != 5 and len(argv) != 4):
+	exit(85)
+
+step = int(argv[1])
+
+check_arg(1, 0)
+check_arg(3, 1)
+if (step >= 3 and len(argv) >= 5):
+	check_arg(4, 1)
+try:
+	file = open(argv[2], 'r')
+except (OSError, IOError) as e:
+	exit(84)
+
+period = int(argv[3])
+if (step >= 3 and len(argv) >= 5):
+	sd_coef = float(argv[4])
+
+value = []
+for line in file:
+	if line.replace('.', '', 1).replace('\n', '', 1).isdigit() == False:
+		exit(84)
+	value.append(float(line))
+
+index = len(value) - 1
+
+if len(value) < index + 1:
+	exit(84)
+
+i = period
+ma = 0.0
+while i != 0:
+	ma += value[index - (period - i)]
+	i -= 1
+ma /= period
+i = period
+ma_sec = 0.0
+while i != 0:
+	ma_sec += pow(value[index - (period - i)] - ma, 2)
+	i -= 1
+ma_sec /= period
+ma_sec = sqrt(ma_sec)
+
+
+if (step >= 1):
+	print("MA: {0:.2f}".format(ma))
+if (step >= 2):
+	print("SD: {0:.2f}".format(ma_sec))
+if (step >= 3 and len(argv) == 5):
+	print("B+: {0:.2f}".format(ma + sd_coef * ma_sec))
+	print("B-: {0:.2f}".format(ma - sd_coef * ma_sec))

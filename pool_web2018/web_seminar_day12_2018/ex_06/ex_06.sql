@@ -1,0 +1,1 @@
+SELECT title AS "Movie title", DATEDIFF(CURDATE(),release_date) AS "Number of days passed" FROM movies WHERE IFNULL(release_date, 0) > 0;

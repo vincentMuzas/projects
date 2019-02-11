@@ -1,0 +1,73 @@
+#!/usr/bin/env python
+
+from sys import *
+from math import *
+
+def check_arg(index, mod):
+	if mod == 0:
+		if argv[index].isdigit() == False:
+			exit(84)
+	elif mod == 1:
+		if argv[index].replace('.', '', 1).isdigit() == False:
+			exit(84)
+
+if (len(argv) == 2 and argv[1] == "-h"):
+	print("USAGE")
+	print("\t{0} [-h] period standard_dev indexes_file index_number\n".format(argv[0]))
+	print("\tperiod\t\tnumber of indexes for the moving average")
+	print("\tstandard_dev\tstandard deviation coefficient to apply")
+	print("\tindexes_file\tfile containing daily indexes")
+	print("\tindex_number\tindex number to compute moving average and Bollinger Bands\n")
+	print("OPTION")
+	print("\t-h\t\tprint the usage and quit.")
+	exit(0)
+
+if (len(argv) != 5):
+	exit(84)
+
+check_arg(1, 0)
+check_arg(2, 1)
+check_arg(4, 1)
+try:
+	file = open(argv[3], 'r')
+except (OSError, IOError) as e:
+	exit(84)
+
+period = int(argv[1])
+sd_coef = float(argv[2])
+index = int(argv[4])
+if index < period:
+	exit(84)
+
+value = []
+for line in file:
+	if line.replace('.', '', 1).replace('\n', '', 1).isdigit() == False:
+		exit(84)
+	value.append(float(line))
+
+if len(value) < index + 1:
+	exit(84)
+
+i = period
+ma = 0.0
+while i != 0:
+	ma += value[index - (period - i)]
+	i -= 1
+ma /= period
+i = period
+ma_sec = 0.0
+while i != 0:
+	ma_sec += pow(value[index - (period - i)] - ma, 2)
+	i -= 1
+ma_sec /= period
+ma_sec = sqrt(ma_sec)
+print("INPUT")
+print("Index: {0}".format(index))
+print("Period: {0}".format(period))
+print("SD_coef: {0:.2f}\n".format(sd_coef))
+print("OUTPUT")
+print("MA: {0:.2f}".format(ma))
+print("SD: {0:.2f}".format(ma_sec))
+print("B+: {0:.2f}".format(ma + sd_coef * ma_sec))
+print("B-: {0:.2f}".format(ma - sd_coef * ma_sec))
+exit(0)

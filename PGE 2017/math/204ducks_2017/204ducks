@@ -1,0 +1,20 @@
+#!/usr/bin/env python3
+
+from sys import *
+from math import *
+
+def calc(a, t):
+	res = 0.0
+	res = (a * exp(-t)) + ((4 - (3 * a)) * exp(-2 * t)) + (((2  * a) - 4) * exp(-4 * t))
+	return res
+
+def percentage(a, t):
+	i = a
+	ret = 0
+	while (i < t * 100):
+		ret += calc(a, i / 100)
+		i = i + 0.1
+	return ret
+
+print("for 1 min {0:.1f}".format(percentage(float(argv[1]), 1) / 10))
+print("for 2 min {0:.1f}".format(percentage(float(argv[1]), 2) / 10))

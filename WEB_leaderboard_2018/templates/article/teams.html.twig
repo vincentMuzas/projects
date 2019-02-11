@@ -1,0 +1,36 @@
+{%  extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="listing">
+            <li class="name title">
+                nom</li><li class="rating title">
+                trueskill rating</li><li class="rating title">
+                wins</li><li class="rating title">
+                loses</li>
+        {% set row_count = 0 %}
+
+        {% for team in teams %}
+            <ul class="{%  if loop.index0 is even %}color2{% endif %}">
+                <li class="name">
+                    <a href="/{{ team.id }}">{{ team.name }}</a></li><li class="rating">
+                    {{ team.skill_mu - (3 *  team.skill_sigma)}}</li><li class="rating">
+                    {% for win in wins %}
+                        {% if win.id == team.id %}
+                            {{ win.wins }}
+                        {% endif %}
+                    {% endfor %}
+
+                    </li><li class="rating">
+                    {% for lose in loses %}
+                        {% if lose.id == team.id %}
+                            {{ lose.loses }}
+                        {% endif %}
+                    {% endfor %}
+                    </li>
+            </ul>
+            {% set row_count = row_count + 1 %}
+        {% endfor %}
+        <li class="title">Total: {{ row_count }}</li>
+    </div>
+
+{%  endblock %}

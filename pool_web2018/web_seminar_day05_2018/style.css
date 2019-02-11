@@ -1,0 +1,120 @@
+html {
+	font-family: "courier prime";
+	background-color: #F5F5F5;
+	height: 100%;
+}
+
+@font-face {
+	font-family: "courier prime";
+	src: url("Courier_Prime.ttf");
+}
+
+body {
+	max-width: 900px;
+	top: 0;
+	margin: auto;
+}
+
+div.bandeau {
+	height: 50px;
+	background-color: #90a4ae;
+}
+
+.footer {
+	position: relative;
+	width: 100%;
+	max-width: 900px;
+	margin: auto;
+	bottom: 0;
+	padding: 10px 0px 20px 0px;
+	background-color: #90a4ae;
+	color: white;
+	text-align: center;
+}
+
+#ico {
+	float: right;
+	display: inline-block;
+	height: inherit;
+}
+
+#logo {
+	float: left;
+	height: inherit;
+	margin: 0px 0px 0px calc(50% - 45px);
+}
+
+div.grid {
+	display: grid;
+	position: relative;
+	justify-content: space-evenly;
+}
+
+article {
+	box-shadow: 0px 2px 10px black;
+	background-color: white;
+	margin: 5px;
+	margin-bottom: 20px;
+	float: left;
+}
+
+article > p {
+	margin: 20px;
+}
+
+a {
+	margin: 0px;
+	color: orange;
+	text-decoration: none;
+}
+
+img.article {
+	width: 100%;
+}
+
+div.pages {
+	grid-template-columns: repeat(7, 1fr);
+	width: 250px;
+	margin: auto;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+div.grid.pages > div:hover {
+	background-color: #90a4ae;
+}
+
+div.grid.pages > div {
+	padding: 10px;
+	border-radius: 4px;
+}
+
+div.current {
+	background-color: #688491 !important;
+}
+
+div.commander {
+	padding: 10px 20px;
+	position: relative;
+	box-sizing: border-box;
+	bottom:0;
+	border-top: 1px solid grey;
+}
+
+@media (max-width: 600px) {
+	.grid {
+		grid-template-columns: 1fr;
+	}
+}
+
+@media (max-width: 899px) and (min-width: 601px) {
+	.grid {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+
+@media (min-width: 900px) {
+	.grid {
+		grid-template-columns: 1fr 1fr 1fr;
+	}
+}

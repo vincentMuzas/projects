@@ -1,0 +1,1 @@
+INSERT INTO subscriptions SET name = "Premium", summary = "For the privileged", price = 80, sub_duration = 126;

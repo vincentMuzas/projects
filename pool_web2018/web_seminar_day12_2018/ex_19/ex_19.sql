@@ -1,0 +1,1 @@
+LOAD DATA INFILE '/home/vincent/Documents/pool_web2018/web_seminar_day12_2018/jobs.csv' INTO TABLE jobs FIELDS TERMINATED BY ',' LINES TERMINATED BY '\n';

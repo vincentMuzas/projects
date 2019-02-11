@@ -1,0 +1,21 @@
+aside {
+	padding-left: .5rem;
+	margin-left: .5rem;
+	margin-right: .5rem;
+	float: left;
+	box-shadow: inset 5px 0 5px -5px #29627e;
+	color: #29627e;
+}
+    
+aside > p {
+	margin: .5rem;
+}
+
+table
+{
+    border-collapse: collapse;
+}
+td, th /* Mettre une bordure sur les td ET les th */
+{
+    border: 1px solid #000000;
+}

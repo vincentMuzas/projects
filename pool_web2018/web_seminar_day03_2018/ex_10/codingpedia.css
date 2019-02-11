@@ -1,0 +1,190 @@
+aside {
+	position: absolute;
+	float: right;
+	right: 0;
+	width: 40%;
+	height: 100%;
+	color: black;
+	border: 2px solid black;
+	border-radius: 10px;
+}
+
+table
+{
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid black;
+}
+
+textarea {
+	width:  80%;
+	height: 150px;
+}
+
+div {
+	border: 2px solid black;
+	left: 0;
+	border-radius: 10px;
+}
+
+.footer {
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 51px;
+	background-color: white;
+	border: 2px solid black;
+	color: black;
+	text-align: center;
+	border-radius: 10px;
+	white-space: nowrap;
+}
+
+.header {
+	top: 0;
+	left: 0;
+	left: 0;
+	width: calc(100% - 4px);
+	background-color: white;
+	border: 2px solid black;
+	color: black;
+	border-radius: 10px;
+}
+
+label {
+	display: block;
+	width: 150px;
+	float: left;
+}
+
+.content {
+	width: 400px;
+	text-align: center;
+	color: rgb(255, 0, 0);
+	background: rgb(65, 62, 255)
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+li a:hover {
+    background-color: rgb(70, 70, 70);
+}
+
+html {
+	height:100%
+}
+
+body {
+	height:100%;
+	right:0;
+	left:0;
+	margin-bottom: 51px;
+}
+
+main {
+	width: 100%;
+	margin-bottom: 61px;
+}
+
+input {
+	max-width: 80%;
+}
+
+div.container {
+	display: grid;
+	grid-template-columns: 60% 40%;
+	grid-gap: 20px;
+	padding: 20px;
+	padding-bottom: 60px;
+	border: none;
+	justify-content: space-evenly;
+}
+
+div[id=block1] {
+	display: inline-block;
+	background-color: orange;
+	width: 120px;
+	height: 120px;
+	padding: 0 !important;
+	border: none;
+}
+
+div[id=block2] {
+	display: inline-block;
+	background-color: yellow;
+	width: 120px;
+	height: 120px;
+	padding: 8px !important;
+	border: none;
+}
+
+div[id=block3] {
+	display: inline-block;
+	background-color: black;
+	width: 120px;
+	height: 120px;
+	padding: 32px !important;
+	border: none;
+}
+
+div.container > div {
+	padding: 20px 0;
+}
+
+div.container > aside {
+	padding: 20px 0;
+}
+
+div.block {
+	border-radius: 0px;
+	width: 50px;
+	height: 50px;
+	padding: 0px !important;
+}
+
+div[foobar=foo1] {
+	background-color: red;
+}
+
+div[foobar=foo2] {
+	background-color: blue;
+}
+
+div.grostexte {
+	width: 500px !important;
+	column-count: 3;
+}
+
+#lin {
+	background-image: linear-gradient(to right, white, blue);
+}
+
+p::first-letter {
+	font-size: 24px;
+	background-color: grey;
+}
+
+.mybutton {
+	border: 3px solid yellow;
+	border-radius: 10px;
+}

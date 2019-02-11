@@ -1,0 +1,1 @@
+SELECT REPLACE(email, "machin.com", "cap-gemini.fr") AS "New email addresses" FROM profiles ORDER BY email DESC;

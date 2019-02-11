@@ -1,0 +1,42 @@
+{%  extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="listing">
+        <h1>{{ name }}<small>Team</small></h1>
+        <div class="secondary-headder">
+            <div>
+                {{ trueskill.value|number_format(2, '.', ' ') }}
+                <small>Trueskill</small></div>
+            <div>
+                <span class="wins">{{ wins.value }}</span>
+                <span> - </span>
+                <span class="losses">{{ losses.value }}</span>
+                <small>History</small>
+            </div>
+        </div>
+    </div>
+    <div style="height: 15px"></div>
+    <div class="listing">
+        <li class="rating">match id</li>
+        <li class="rating">result</li>
+        <li class="rating">oponent</li>
+        <li class="rating">duration</li>
+        {% set row_count = 0 %}
+        {% for match in matches %}
+            <ul class="{% if loop.index0 is even %}color2{% endif %}">
+                <li class="rating">#{{ match.id }}</li>
+                <li class="rating">
+                    {% if match.winner != id %}
+                        <span class="losses">loss</span>
+                    {% else %}
+                        <span class="wins">win</span>
+                    {% endif %}
+                </li>
+                <li class="rating">{{ match.oponent }}</li>
+                <li class="rating">{{ match.duration }}</li>
+            </ul>
+            {% set row_count = row_count + 1 %}
+        {% endfor %}
+        <li class="title">Total: {{ row_count }}</li>
+    </div>
+{%  endblock %}

@@ -1,0 +1,1 @@
+SELECT ROUND(AVG(TRUNCATE(DATEDIFF(CURDATE(),birthdate)/365, 0))) AS "Average age" FROM profiles;

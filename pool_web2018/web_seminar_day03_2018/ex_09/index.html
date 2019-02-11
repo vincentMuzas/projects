@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>CodingPedia - Home</title>
+  <link rel="stylesheet" href="codingpedia.css">
+  <!-- <script src="script.js"></script> -->
+</head>
+
+<body>
+<div class="header">
+  <h1>Welcome to CodingPedia</h1>
+  <ul>
+    <li><a href="index.html">index</a></li>
+    <li><a href="php.html">php</a></li>
+    <li><a href="sql.html">sql</a></li>
+  </ul>
+</div>
+
+  <div class="container" id="lin">
+  <div>
+    <p>CodingPedia  is a collective  encyclopedia  project  on the  Internet  aiming  to be
+    universal  and multi -lingual  which  functions  as a wiki.
+    CodingPedia  has  for  goal to offer  freely  reusable  objective  and  verifiable  content
+    that  anyone  can  modify  and  improve.</p>
+
+  <form>
+    <label>Name</label>
+    <input type="text" name="name" id="name" required><br>
+    <label>First name:</label>
+    <input type="text" name="firstname" id="firstname" required><br>
+    <label>Email:</label>
+    <input type="email" name="mail" required id="email"><br>
+    <label>Age:</label>
+    <input type="number" name="age" min=3 max=99 id="age"><br>
+    <label>Phone:</label>
+    <input type="text" name="phone" pattern=".{10,10}" id="tel"><br>
+    <label>Sex:</label>
+    <input type="radio" name="sex" value="Male" id="homme" checked> Male
+    <input type="radio" name="sex" value="Female" id="femme"> Female<br>
+    <label>Hair color:</label>
+    <input type="color" name="hair" id="color"><br>
+    <label>Date:</label>
+    <input type="date" name="date" id="Date" required><br>
+    <label>Technology:</label>
+    <select name="techno" id="techno">
+      <option selected>php</option>
+      <option>sql</option>
+    </select><br>
+    Question:<br>
+    <textarea name="question" id="question"></textarea><br>
+    <input type="submit">
+    </form>
+  </div>
+  <div>I have 40 pixels less in my container<br>
+    This text isn't a paragraph<br>
+    <p style="font-family: satisfy">I am an uncommon font</p>
+    <p style="text-shadow: 5px 5px red">I am a customized text</p></div>
+  <div class="block" foobar="foo1"></div>
+  <div class="block" foobar="foo2"></div>
+  <div class="block"></div>
+  <div class="mybutton">Send</div>
+  <div id=block1></div>
+  <div id=block2></div>
+  <div id=block3></div>
+<div class="footer">
+  <p>Vincent Muzas - 2 square lucien beret 31200 Toulouse - 06.02.71.48.49</p>
+</div>
+</div>
+</body>
+</html>

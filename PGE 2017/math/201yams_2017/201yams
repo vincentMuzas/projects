@@ -1,0 +1,73 @@
+#!/usr/bin/env python3
+
+from math import *
+from sys import *
+
+def check_nbr(dices, plus):
+	nbr = 0
+
+	for x in range(0, len(dices)):
+		if not (dices[x] >= 0 + plus and dices[x] <= 6):
+			exit(84)
+		if dices[x] == 0:
+			nbr += 1
+	if nbr != 0 and nbr != 5:
+		exit(84)
+	return True
+
+def check_pair(pair):
+	nbr = 0
+	prc = float(0)
+
+	for x in range(0, len(dices)):
+		if dices[x] == pair:
+			nbr += 1
+	if nbr >= 2:
+		print("chances to get a {0} pair:\t100.00%".format(pair))
+	else:
+		prc = ((pow(2, 5-nbr) - 1 - (5 - nbr)) / pow(6, 5-nbr)) * 100
+		print("chances to get a {0} pair:\t{1:.2f}%".format(pair, prc))
+
+def check_yams(yams):
+	nbr = 0
+	prc = float(0)
+
+	for x in range(0, len(dices)):
+		if dices[x] == yams:
+			nbr += 1
+	if nbr == 5:
+		print("chances to get a {0} yams:\t100.00%".format(yams))
+	else:
+		prc = (1 / pow(6, 5-nbr)) * 100
+		print("chances to get a {0} yams:\t{1:.2f}%".format(yams, prc))
+
+if len(argv) == 2 and argv[1] == "-h":
+	print("help")
+elif len(argv) == 7:
+	for x in range(1,  6):
+		if argv[x].isdigit() == False:
+			exit(84)
+	dices = []
+	dices.append(int(argv[1]))
+	dices.append(int(argv[2]))
+	dices.append(int(argv[3]))
+	dices.append(int(argv[4]))
+	dices.append(int(argv[5]))
+	check_nbr(dices, 0)
+	if "pair" in argv[6] and len(argv[6]) == 6 and argv[6][4] == '_' and check_nbr([int(argv[6][5])], 1) == True:
+		check_pair(int(argv[6][5]))
+	elif "three" in argv[6] and len(argv[6]) == 7 and argv[6][5] == '_' and check_nbr([int(argv[6][6])], 1) == True:
+		print("three ok")
+	elif "four" in argv[6] and len(argv[6]) == 6 and argv[6][4] == '_' and check_nbr([int(argv[6][5])], 1) == True:
+		print("four ok")
+	elif "yams" in argv[6] and len(argv[6]) == 6 and argv[6][4] == '_' and check_nbr([int(argv[6][5])], 1) == True:
+		check_yams(int(argv[6][5]))
+	elif "straight" in argv[6] and len(argv[6]) == 10 and argv[6][8] == '_' and check_nbr([int(argv[6][9])], 1) == True:
+		print("straight ok")
+	elif "full" in argv[6] and len(argv[6]) == 8 and argv[6][4] == argv[6][6] and argv[6][4] == '_' and check_nbr([int(argv[6][5])], 1) == True and check_nbr([int(argv[6][7])], 1) == True and argv[6][5] != argv[6][7]:
+		print("full ok")
+	else:
+		print("fail")
+		exit(84)	    
+else:
+	exit(84)

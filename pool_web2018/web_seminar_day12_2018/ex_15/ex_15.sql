@@ -1,0 +1,1 @@
+UPDATE profiles SET email = replace(email, "machin.com", "cap-gemini.fr");

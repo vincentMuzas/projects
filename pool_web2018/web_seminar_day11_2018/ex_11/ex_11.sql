@@ -1,0 +1,1 @@
+SELECT COUNT(id) as "Number of movies ending with 'tion'" FROM movies WHERE title LIKE BINARY "%tion";

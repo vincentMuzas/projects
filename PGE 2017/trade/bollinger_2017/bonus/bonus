@@ -1,0 +1,97 @@
+#!/usr/bin/env python
+
+from sys import *
+from math import *
+import matplotlib.pyplot as plt
+import numpy as np
+import time
+
+disp_size = 200
+
+def revese_that(array):
+	tmp = []
+	for i in reversed(array):
+		tmp.append(i)
+	return tmp
+
+def check_arg(index, mod):
+	if mod == 0:
+		if argv[index].isdigit() == False:
+			exit(84)
+	elif mod == 1:
+		if argv[index].replace('.', '', 1).isdigit() == False:
+			exit(84)
+
+
+def calcul(data):
+	ma_tab = []
+	band_up = []
+	band_down = []
+	index = int(0)
+	i = int(0)
+	while i != len(data):
+		tmp = i
+		ma = 0.0
+		while tmp > 0 and i - tmp != period:
+			ma += data[i - (i - tmp)]
+			tmp -= 1
+		if i - tmp != 0:
+			ma /= i - tmp
+		ma_sec = 0.0
+		tmp = i
+		while tmp > 0 and i - tmp != period:
+			ma_sec += pow(data[i - (i - tmp)] - ma, 2)
+			tmp -= 1
+		if i - tmp != 0:
+			ma_sec /= i - tmp
+			ma_sec = sqrt(ma_sec)
+		ma_tab.append(ma)
+		band_up.append(ma + sd_coef * ma_sec)
+		band_down.append(ma - sd_coef * ma_sec)
+		i += 1
+	return [ma_tab, band_up, band_down]
+
+def main():
+	x = np.linspace(0, disp_size - 1, disp_size)
+	y = np.sin(x)
+
+	plt.ion()
+
+	fig = plt.figure()
+	ax = fig.add_subplot(111)
+	line1, = ax.plot(x, y, 'r-')
+	line2, = ax.plot(x, y, 'g-')
+	line3, = ax.plot(x, y, 'g-')
+	line4, = ax.plot(x, y, 'b-')
+	try:
+		file = open(argv[1], 'r')
+	except (OSError, IOError) as e:
+		exit(84)
+	value = []
+	for line in file:
+		if line.replace('.', '', 1).replace('\n', '', 1).isdigit() == False:
+			exit(84)
+		value.append(float(line))
+
+	value = revese_that(value)
+	while 1:
+		data = calcul(value)
+		plt.xlim([period, disp_size - 1])
+		plt.ylim([min(data[2][-disp_size:]), max(data[1][-disp_size:])])
+		line1.set_ydata(data[0][-disp_size:])
+		line2.set_ydata(data[1][-disp_size:])
+		line3.set_ydata(data[2][-disp_size:])
+		line4.set_ydata(value[-disp_size:])
+		fig.canvas.draw()
+		time.sleep(1)
+
+if (len(argv) != 4):
+	print "USAGE:", argv[0], "[data file] [period] [sd_coef]"
+	exit(0)
+
+check_arg(2, 0)
+check_arg(3, 1)
+period = int(argv[2])
+sd_coef = float(argv[3])
+
+main()

@@ -1,0 +1,1 @@
+SELECT zipcode FROM profiles GROUP BY ZIPCODE HAVING COUNT(zipcode) > 1;

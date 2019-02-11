@@ -1,0 +1,347 @@
+#!/usr/bin/env python3
+
+import random
+import sys
+from threading import Thread
+import time
+import socket
+import re
+import copy
+import math
+import select
+
+OBJECTIVE = [
+[15, 1, 0, 0, 0, 0, 0],
+[15, 1, 1, 1, 0, 0, 0],
+[15, 2, 0, 1, 0, 2, 0],
+[15, 1, 1, 2, 0, 1, 0],
+[15, 1, 2, 1, 3, 0, 0],
+[15, 1, 2, 3, 0, 1, 0],
+[15, 2, 2, 2, 2, 2, 1]]
+
+RESOURCES = ["food", "linemate", "deraumere", "sibur", "mendiane", "phiras", "thystame"]
+REQUIREMENT = [2, 3, 3, 5, 5, 7, 7]
+BROADCASTERS = [-1, -1, -1, -1, -1, -1, -1]
+INLEVEL = [0, 0, 0, 0, 0, 0, 0]
+buffer = str()
+class Afficheur(Thread):
+
+	def __init__(self, ip, port, team, thread_number):
+		Thread.__init__(self)
+		self.ip = ip
+		self.port = port
+		self.team = team
+		self.thread_number = thread_number
+		self.last_cmd = str()
+		self.check_inv = 0
+		self.inventory = [10, 0, 0, 0, 0, 0, 0]
+		self.objective = copy.copy(OBJECTIVE[0])
+		self.missing = copy.copy(OBJECTIVE[0])
+		self.canAssend = False
+		self.level = 0
+		INLEVEL[0] += 1
+		random.seed(self.thread_number)
+
+	def run(self):
+		s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+		try:
+			s.connect((self.ip, self.port))
+			self.sock = s
+		except:
+			print(self.thread_number, "cant connect")
+			return
+		msg = self.getmsg()
+		msg = self.team
+		while (msg):
+			try:
+				s.send(str.encode(msg + "\n"))
+			except:
+				break
+			msg = self.getmsg()
+			if (BROADCASTERS[self.level] == self.thread_number):
+				BROADCASTERS[self.level] = -1
+			msg = self.parse(msg)
+			if (msg == "ignore"):
+				continue
+			self.last_cmd = msg
+			if (msg == "incantation"):
+				if (self.level > 0):
+					print('\033[93m' + str(self.thread_number), self.level, "try incantation", self.inventory, '\033[0m')	
+				else:
+					print(self.thread_number, self.level, "try incantation", self.inventory)
+			if (msg != "inventory"):
+				self.check_inv += 1
+		print("\033[91mthread {} dead".format(self.thread_number))
+		INLEVEL[self.level] -= 1
+		print("inventory: ", str(self.inventory))
+		print(sum(INLEVEL), "players remaining\033[0m")
+		s.close()
+
+	def parse(self, msg):
+		global buffer
+		if (msg.count("dead") or len(msg) == 0):
+			print(self.thread_number, "dead in parse")
+			print(buffer)
+			return None
+
+		if (msg.count("message")):
+			return ("ignore")
+
+		if (self.inventory[0] <= 5):
+			to_ret = random.choice(["take food", "forward"])
+			if (to_ret == "take food"):
+				self.inventory[0] += 1
+			return to_ret
+
+		if (self.last_cmd == "incantation"):
+			if (msg.count("Elevation underway") > 0):
+				return "inventory"
+			else:
+				return "inventory"
+
+		if (self.last_cmd == "inventory"):
+			to_ret = self.checkInventory(msg)
+			self.checkAssend()
+			if (to_ret):
+				return (to_ret)
+
+		if (self.check_inv > 4):
+			self.check_inv = 0
+			return "inventory"
+
+		if (self.level > 4 and self.last_cmd == "look" and msg.split(",")[0].count("player") > 1 and len(msg.split(",")[0]) > 16):
+			return "eject"
+		if (self.last_cmd == "look"):
+			to_ret = self.checkLook(msg)
+			if (to_ret):
+				return (to_ret)
+		
+		if (self.last_cmd != "look"):
+			return "look"
+
+		if (self.canAssend and INLEVEL[self.level] >= REQUIREMENT[self.level]):
+			self.checkAssend()
+			if (self.canAssend and BROADCASTERS[self.level] >= 0):
+				print(self.thread_number, "is ted")
+				return self.Broadcasted()
+			elif (self.canAssend and BROADCASTERS[self.level] == -1):
+				BROADCASTERS[self.level] = self.thread_number
+				print(self.thread_number, "IS BROADCASTER")
+				return self.Broadcaster()
+
+		return random.choice(["forward", "forward", "forward", "right", "right", "left"])
+	
+	def Broadcaster(self):
+		ready = 0
+		while 1:
+			self.sock.send(str.encode("take food\n"))
+			msg = self.getmsg()
+			if (msg == "ko\n"):
+				break
+			if (msg.count("dead\n") > 0 or len(msg) == 0):
+				print(self.thread_number, "dead in broadcaster")
+				return (None)
+
+		self.sock.send(str.encode("broadcast beacon " + str(self.level) + "\n"))
+		tic = 1
+		while (BROADCASTERS[self.level] == self.thread_number):
+			msg = self.getmsg()
+			ready += msg.count("message 0, ready " + str(self.level)) > 0
+			if (msg.count("dead") > 0 or len(msg) == 0):
+				print(self.thread_number, "dead in broadcaster 2")
+				return (None)
+			if (tic == 0):
+				self.checkInventory(msg)
+				if (self.inventory[0] <= 5):
+					return "look"
+			if (ready >= REQUIREMENT[self.level] and msg.split(",")[0].count("player") >= REQUIREMENT[self.level]):
+				print(self.thread_number,"GO!!", msg.split(',')[0])
+				self.sock.send(str.encode("broadcast go!\n"))
+				if (self.getmsg().count("dead")> 0):
+					return (None)
+				return ("incantation")
+			if (tic == 0):
+				self.sock.send(str.encode("look\n"))
+			elif (tic == 1):
+				self.sock.send(str.encode("broadcast beacon " + str(self.level) + "\n"))
+			elif (tic == 2):
+				self.sock.send(str.encode("inventory\n"))
+			tic += 1
+			if (tic >= 3):
+				tic = 0
+		return ("look")
+			
+	def Broadcasted(self):
+		ready = False
+		rotate = 1
+		cible = BROADCASTERS[self.level]
+
+		while (BROADCASTERS[self.level] != -1 and cible == BROADCASTERS[self.level]):
+			msg = self.getmsg()
+			if (msg.count("message 0, go!") > 0):
+				return ("incantation")
+			elif (msg.count("message 0, beacon " + str(self.level)) > 0 and ready == False):
+				self.sock.send(str.encode("broadcast ready " + str(self.level) + "\n"))
+				ready = True
+			elif (msg.count("beacon " + str(self.level)) > 0):
+				
+				try:
+					index = int(msg.split(" ")[1][0])
+				except:
+					continue
+				if (index in [1, 2, 8]):
+					self.sock.send(str.encode("forward\n"))
+				elif (index in [5, 6, 7]):
+					self.sock.send(str.encode("right\n"))
+				elif (index in [3, 4]):
+					self.sock.send(str.encode("left\n"))
+				msg = self.getmsg()
+			else:
+				self.checkInventory(msg)
+			if (msg.count("dead") > 0 or len(msg) == 0):
+				print(self.thread_number, "dead broadcasted")
+				return (None)
+			if (self.inventory[0] <= 5):
+				return "look"
+			if (rotate % 10 == 0):
+				self.sock.send(str.encode("inventory\n"))
+			rotate = (rotate + 1) % 10
+		if (ready == True):
+			return ("incantation")
+		return ("look")
+
+		
+	def checkInventory(self, msg):
+		msg = msg.replace("[", "").replace("]", "").split(",")
+		to_ret = None
+		i = 0
+		while (i < len(msg)):
+			try:
+				msg[i] = int(re.sub("[^0-9]", "", msg[i]))
+				if (self.objective[i] > msg[i]):
+					self.missing[i] = self.objective[i] - msg[i]
+					to_ret = "look"
+				else:
+					self.missing[i] = 0
+			except:
+				msg = self.getmsg()
+				return None
+			i += 1
+		i = 0
+		if (len(msg) >= 7):
+			self.inventory = msg
+			return (to_ret)
+		return ("inventory")
+
+	def checkLook(self, msg):
+		i = 0
+		curent = msg.split(",")
+		while (i < len(self.objective)):
+			if (self.missing[i] > 0):
+				self.canAssend = False
+				to_ret = self.Look(curent, RESOURCES[i])
+				if (to_ret):
+					return (to_ret)
+			i += 1
+		return (None)
+
+	def Look(self, msg, ressource):
+		i = 0
+		level = 0
+		max_case = 0
+		middle_case = 0
+		direction = 0
+		for case in msg:
+			if (i > max_case):
+				level += 1
+				middle_case = level * (level + 1)
+				max_case = middle_case + level
+				direction = i - middle_case
+			if (case.count(ressource) > 0):
+				while (level > 0 or direction != 0):
+					if (level > 0):
+						msg = "forward"
+						level -= 1
+					elif (direction != 0):
+						if (direction > 0):
+							msg = "right"
+						else:
+							msg = "left"
+						level = abs(direction)
+						direction = 0
+					try:
+						self.sock.send(str.encode(msg + "\n"))
+					except:
+						return
+					msg = self.getmsg()
+#				if (self.level > 0):
+#					print('\033[93m' + str(self.thread_number), "took", ressource + '\033[0m')
+				return ("take " + ressource)
+			i+= 1
+#		print(self.thread_number, "cannot find any", ressource)
+
+	def checkAssend(self):
+		if (self.canAssend == False):
+			i = 0
+			while (i < len(self.objective)):
+				if (self.missing[i] > 0):
+					return False
+				i += 1
+			self.canAssend = True
+			#print("{} can assend to {}".format(self.thread_number, self.level + 1))
+			return (True)
+	
+	def getmsg(self):
+		global buffer
+		if (len(buffer) > 1):
+			to_ret = buffer.split("\n")[0]
+			to_ret += "\n"
+			buffer = buffer[len(to_ret):]
+			return to_ret
+		msg = self.sock.recv(4096).decode("utf-8")
+		while (msg.count('\n') == 0 and len(msg)):
+			time.sleep(0.1)
+			msg += self.sock.recv(4096).decode("utf-8")
+		cpy = msg.split('\n')
+		for elem in cpy:
+			if (elem.count("level") > 0):
+				print("----------thread {}: {}-----------".format(self.thread_number, elem.replace("\n", "")))
+				INLEVEL[self.level] -= 1
+				self.level = int(re.sub("[^0-9]", "", elem)) - 1
+				INLEVEL[self.level] += 1
+				self.objective = copy.copy(OBJECTIVE[self.level])
+				self.missing = copy.copy(OBJECTIVE[self.level])
+				self.canAssend = False
+		buffer = copy.copy(msg)
+		return (msg)
+
+def print_help():
+	print("Usage: ./trantorian host port team number_of_clients")
+	exit(84)
+
+def check_args():
+	if (len(sys.argv) != 5):
+		print_help()
+	try:
+		socket.inet_aton(sys.argv[1])
+	except socket.error:
+		print_help()
+	if (sys.argv[2].isdigit() == 0 or sys.argv[4].isdigit() == 0):
+		print_help()
+
+def main():
+	check_args()
+	ip = sys.argv[1]
+	port = int(sys.argv[2])
+	team = sys.argv[3]
+	total_clients = int(sys.argv[4])
+	threads = list()
+	for i in range(0, total_clients):
+		threads.append(Afficheur(ip, port, team, i))
+		time.sleep(0.01)
+		threads[i].start()
+
+#	for i in range(0, total_clients):
+#		threads[i].join()
+
+main()

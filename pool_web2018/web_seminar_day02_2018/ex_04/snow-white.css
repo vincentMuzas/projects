@@ -1,0 +1,38 @@
+p.a-great-style {
+	background-color: red;
+	font-family: impact;
+}
+
+body {
+	background-color: yellow;
+}
+
+mark.blood {
+	color: red;
+	font-style: italic;
+	background-color: white;
+}
+
+.left-bordered-and-big {
+	float: left;
+	border: 1px solid black;
+	width: 60%;
+}
+
+.right-bordered-and-small {
+	float: right;
+	border: 1px solid black;
+	width: 20%;
+}
+
+#p1 {
+	color: white;
+	background-color:black;
+	font-size:21px;
+}
+
+#p2 {
+	color:black;
+	background-color:white;
+	font-size:27px;
+}

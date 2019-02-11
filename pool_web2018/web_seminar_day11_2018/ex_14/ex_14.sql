@@ -1,0 +1,1 @@
+SELECT COUNT(id) FROM movies WHERE title LIKE BINARY "eX%";

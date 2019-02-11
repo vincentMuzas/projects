@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>bonjour!</title>
+  <link rel="stylesheet" href="style.css">
+  <!--  <script src="script.js"></script> -->
+</head>
+<body>
+  <h1>Welcome to CodingPedia</h1>
+  <main>
+    <aside margin: .5rem>ceci est un text a coté sans intéret</aside>
+	  <p>CodingPedia  is a collective  encyclopedia  project  on the  Internet  aiming  to be
+universal  and multi -lingual  which  functions  as a wiki.
+CodingPedia  has  for  goal to offer  freely  reusable  objective  and  verifiable  content
+that  anyone  can  modify  and  improve.</p>
+    <div style="background:blue;border:10px solid rgb(192, 35, 179)" contextmenu="mymenu">
+      <p>clic droit sur la ligne pour voire le contenu</p>
+      <menu type="context" id="mymenu">
+        <menuitem label="Bouton ki fé rien" onclic=window.location.reload()></menuitem>
+      </menu>
+    </div>
+    <ul style="list-style-type:disc">
+      <li><a href="index.html">lien vers index.html</a></li>
+      <li><a href="php.html">lien vers php.html</a></li>
+      <li><a href="sql.html">lien vers sql.html</a></li>
+    </ul>
+  <form>
+    Name<br>
+    <input type="text" name="name" id="name" required><br>
+    First name:<br>
+    <input type="text" name="firstname" id="firstname" required><br>
+    Email:<br>
+    <input type="email" name="mail" required id="email"><br>
+    Age:<br>
+    <input type="number" name="age" min=3 max=99 id="age"><br>
+    Phone:<br>
+    <input type="text" name="phone" pattern=".{10,10}" id="tel"><br>
+    Sex:<br>
+    <input type="radio" name="sex" value="Male" id="sex" checked> Male<br>
+    <input type="radio" name="sex" value="Female" id="sex"> Female<br>
+    Hair color:<br>
+    <input type="color" name="hair" id="color"><br>
+    Date:<br>
+    <input type="date" name="date" id="Date" required><br>
+    Technology:<br>
+    <select name="techno" id="techno">
+      <option selected>php</option>
+      <option>sql</option>
+    </select><br>
+    Question:<br>
+    <textarea name="question" id="question"></textarea>
+    <input type="submit">
+    
+  </form>
+  </main>
+  <footer>Vincent Muzas - 2 square lucien beret 31200 Toulouse - 06.02.71.48.49</footer>
+</body>
+</html>

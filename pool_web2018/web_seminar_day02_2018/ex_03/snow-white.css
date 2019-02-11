@@ -1,0 +1,25 @@
+p.a-great-style {
+	background-color: red;
+	font-family: impact;
+}
+
+body {
+	background-color: yellow;
+}
+
+mark.blood {
+	color: red;
+	font-style: italic;
+	background-color: white;
+}
+#p1 {
+	color: white;
+	background-color:black;
+	font-size:21px;
+}
+
+#p2 {
+	color:black;
+	background-color:white;
+	font-size:27px;
+}

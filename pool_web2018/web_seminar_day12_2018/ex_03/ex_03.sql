@@ -1,0 +1,1 @@
+SELECT floor AS "Floor number", SUM(seats) AS "Total number of seats", SUM(id) AS "Total number of rooms" FROM rooms GROUP BY floor ORDER BY SUM(seats);

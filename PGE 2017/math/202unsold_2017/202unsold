@@ -1,0 +1,136 @@
+#!/usr/bin/env python3
+
+from sys import argv
+
+if (len(argv) != 3 or "-h" in argv):
+	print ("USAGE")
+	print ("\t" + argv[0] + " a b\n")
+	print ("DESCRIPTION")
+	print ("\ta\tconstant computed from the past results")
+	print ("\tb\tconstant computed from the past results")
+	if ("-h" in argv):
+		exit (0)
+	else:
+		exit (84)
+
+def calc(a, b, x, y):
+	dividende = (a - x) * (b - y)
+	diviseur = (5 * a - 150) * (5 * b - 150)
+	return (dividende / diviseur)
+
+def check_args():
+	if (argv[1].isdigit() and argv[2].isdigit()):
+		if (int(argv[1]) > 50 and int(argv[2]) >= 50):
+			return 1
+	return 0
+
+if (check_args() == 0):
+	exit(84)
+
+prices = [10, 20, 30, 40, 50]
+a = int(argv[1])
+b = int(argv[2])
+X_law = [0, 0, 0, 0, 0]
+Y_law = 0
+values = []
+for i in range(5):
+	values.append([float(0)] * 5)
+print("------------------------------------------------------")
+print("\tX=10\tX=20\tX=30\tX=40\tX=50\tY law", end='')
+for y in range(5):
+	sum = 0
+	print ("\nY=" + str(prices[y]), end='')
+	for x in range(5):
+		values[y][x] = calc(a, b, prices[x], prices[y])
+		sum += values[y][x]
+		print ("\t%.3f" % values[y][x], end='')
+		X_law[x] += values[y][x]
+	print("\t%.3f" % sum, end='')
+	Y_law += sum
+print("\nX law\t%.3f\t%.3f\t%.3f\t%.3f\t%.3f\t%.0f" % (X_law[0], X_law[1], X_law[2], X_law[3], X_law[4], Y_law))
+print("------------------------------------------------------")
+print("z\t20\t30\t40\t50\t60\t70\t80\t90\t100\ttotal")
+print("p(Z=z)", end='')
+Z = [float(0)] * 9
+total = float(0)
+for index in range(9):
+	i = sum = 0
+	y = 10 * (index + 1)
+	x = 10
+	while y > 50:
+		y -= 10
+		x += 10
+	while (x in range(10, 60) and y in range(10, 60)):
+		loc = calc(a, b, x, y)
+		sum += loc
+		y -= 10
+		x += 10
+	total += sum
+	Z[index] = sum
+	print("\t%.3f" % sum, end='')
+print("\t%.0f" % total)
+print("------------------------------------------------------")
+
+total = 0
+arr = [10, 20, 30, 40, 50]
+loc = 0
+for i in range(len(arr)):
+	loc += values[0][i]
+	total += values[0][i] * arr[i]
+print("expected value of X:\t%.1f" % (total / loc))
+
+moyenne = 0
+n = 0
+for i in range(len(arr)):
+	n += values[0][i]
+for i in range(len(arr)):
+	moyenne += values[0][i] * arr[i]
+moyenne /= n
+variance = 0
+for i in range(len(arr)):
+	variance += values[0][i] * pow(arr[i], 2)
+variance /= n
+variance -= pow(moyenne, 2)
+print("variance of X:\t\t%.1f" % variance)
+
+total = 0
+arr = [10, 20, 30, 40, 50]
+loc = 0
+for i in range(len(arr)):
+	loc += values[i][0]
+	total += values[i][0] * arr[i]
+print("expected value of Y:\t%.1f" % (total / loc))
+
+moyenne = 0
+n = 0
+for i in range(len(arr)):
+	n += values[i][0]
+for i in range(len(arr)):
+	moyenne += values[i][0] * arr[i]
+moyenne /= n
+variance = 0
+for i in range(len(arr)):
+	variance += values[i][0] * pow(arr[i], 2)
+variance /= n
+variance -= pow(moyenne, 2)
+print("variance of Y:\t\t%.1f" % variance)
+
+total = 0
+arr = [20, 30, 40, 50, 60, 70, 80, 90, 100]
+for i in range(len(arr)):
+	total += arr[i] * Z[i]
+print("expected value of Z:\t%.1f" % total)
+
+moyenne = 0
+n = 0
+for i in range(len(Z)):
+	n += Z[i]
+for i in range(len(arr)):
+	moyenne += Z[i] * arr[i]
+moyenne /= n
+variance = 0
+for i in range(len(arr)):
+	variance += Z[i] * pow(arr[i], 2)
+variance /= n
+variance -= pow(moyenne, 2)
+print("variance of Z:\t\t%.1f" % variance)

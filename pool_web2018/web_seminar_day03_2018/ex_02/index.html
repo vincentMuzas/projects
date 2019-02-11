@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>CodingPedia - Home</title>
+  <link rel="stylesheet" href="codingpedia.css">
+  <!-- <script src="script.js"></script> -->
+</head>
+<main>
+  <div class="header">
+    <h1>Welcome to CodingPedia</h1>
+    <ul>
+      <li><a href="index.html">index</a></li>
+      <li><a href="php.html">php</a></li>
+      <li><a href="sql.html">sql</a></li>
+    </ul>
+  </div>
+
+    <div class="container">
+      <div>
+        <p>CodingPedia  is a collective  encyclopedia  project  on the  Internet  aiming  to be
+        universal  and multi -lingual  which  functions  as a wiki.
+        CodingPedia  has  for  goal to offer  freely  reusable  objective  and  verifiable  content
+        that  anyone  can  modify  and  improve.</p>
+
+      <form>
+        <label>Name</label>
+        <input type="text" name="name" id="name" required><br>
+        <label>First name:</label>
+        <input type="text" name="firstname" id="firstname" required><br>
+        <label>Email:</label>
+        <input type="email" name="mail" required id="email"><br>
+        <label>Age:</label>
+        <input type="number" name="age" min=3 max=99 id="age"><br>
+        <label>Phone:</label>
+        <input type="text" name="phone" pattern=".{10,10}" id="tel"><br>
+        <label>Sex:</label>
+        <input type="radio" name="sex" value="Male" id="sex1" checked> Male
+        <input type="radio" name="sex" value="Female" id="sex2"> Female<br>
+        <label>Hair color:</label>
+        <input type="color" name="hair" id="color"><br>
+        <label>Date:</label>
+        <input type="date" name="date" id="Date" required><br>
+        <label>Technology:</label>
+        <select name="techno" id="techno">
+          <option selected>php</option>
+          <option>sql</option>
+        </select><br>
+        Question:<br>
+        <textarea name="question" id="question"></textarea><br>
+        <input type="submit">
+        </form>
+      </div>
+      <div>I have 40 pixels less in my container</div>
+    </div>
+<div class="footer">
+  <p>Vincent Muzas - 2 square lucien beret 31200 Toulouse - 06.02.71.48.49</p>
+</div>
+
+</main>
+</html>

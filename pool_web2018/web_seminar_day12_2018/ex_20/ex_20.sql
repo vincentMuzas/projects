@@ -1,0 +1,1 @@
+SELECT * FROM movies INTO OUTFILE "/tmp/movies.csv";

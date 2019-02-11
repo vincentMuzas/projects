@@ -1,0 +1,1 @@
+SELECT CONCAT(lastname, "-", firstname) AS "Full name" FROM profiles;

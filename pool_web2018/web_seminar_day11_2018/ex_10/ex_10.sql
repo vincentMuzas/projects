@@ -1,0 +1,1 @@
+SELECT id FROM movies WHERE title LIKE BINARY "%tard%";

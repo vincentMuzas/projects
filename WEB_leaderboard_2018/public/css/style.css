@@ -1,0 +1,116 @@
+html {
+    background: #1C242D;
+    color: white;
+    font-size: 14px;
+    font-family: "Lucida Grande, Tahoma, Verdana, Arial, sans-serif";
+}
+
+body {
+    max-width: 1000px;
+    margin: auto;
+}
+
+div.logo {
+    background: #ED3B1C;
+}
+
+div.logo > * {
+    color: white;
+    text-decoration: none;
+}
+
+div.head > * {
+    padding: 15px;
+    display: inline-block;
+    text-decoration: none;
+}
+
+div.head > a {
+    color: #39CCCC;
+}
+
+div.head > a:hover {
+    background: #242F39;
+}
+
+ul {
+    padding: 0;
+}
+
+li {
+    display: inline-block;
+}
+
+ul {
+    margin: 0;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: rgba(255,255,255,0.04);
+}
+
+ul.color2 {
+    background-color: rgba(255,255,255,0.08);
+}
+
+li.name {
+    width: 40%;
+}
+
+li.rating {
+    width: 20%;
+}
+
+div.listing {
+    background: #242F39;
+    padding: 10px;
+}
+
+li.title {
+    margin: 10px 0px;
+}
+
+.wins {
+    color: #A9CF54;
+}
+
+.losses {
+    color: #C23C2A;
+}
+
+h1 {
+    display: inline-block;
+}
+
+small {
+    display: block;
+    color: #C4C4C4;
+    margin-top: 3px;
+    font-size: 12px;
+}
+
+.secondary-headder {
+    position: relative;
+    float: right;
+    top: 8px;
+    right: 8px;
+    margin: 0;
+    padding: 0;
+}
+
+.secondary-headder > * {
+    display: inline-block;
+    margin: 0px 10px;
+}
+
+span.wins {
+    color: #A9CF54;
+}
+
+span.losses {
+    color: #C23C2A;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
