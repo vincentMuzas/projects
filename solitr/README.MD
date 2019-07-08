@@ -3,11 +3,17 @@ C'est un jeu de solitaire
 
 Nécésite Maven
 Compilation par makefile:
+
 $> make
+
 Lancer le programme:
+
 $> make run
+
 Nettoyage du dossier:
+
 $> make [clean/fclean]
+
 
 Jamais vu ou réussi auparavant:
 - Utilisation de maven pour compilation
