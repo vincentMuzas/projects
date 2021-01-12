@@ -1,0 +1,7 @@
+
+@media print {
+    #top-infos
+    {
+	display:none;
+}
+}

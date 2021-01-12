@@ -58,8 +58,13 @@ class Afficheur(Thread):
 			except:
 				break
 			msg = self.getmsg()
-			if (BROADCASTERS[self.level] == self.thread_number):
-				BROADCASTERS[self.level] = -1
+			if (self.thread_number in BROADCASTERS):
+				i = 0
+				while (i < len(BROADCASTERS)):
+					if (BROADCASTERS[i] == self.thread_number):
+						BROADCASTERS[i] = -1
+						break
+					i += 1
 			msg = self.parse(msg)
 			if (msg == "ignore"):
 				continue
@@ -143,7 +148,7 @@ class Afficheur(Thread):
 				return (None)
 
 		self.sock.send(str.encode("broadcast beacon " + str(self.level) + "\n"))
-		tic = 1
+		tic = 2
 		while (BROADCASTERS[self.level] == self.thread_number):
 			msg = self.getmsg()
 			ready += msg.count("message 0, ready " + str(self.level)) > 0
@@ -156,7 +161,7 @@ class Afficheur(Thread):
 					return "look"
 			if (ready >= REQUIREMENT[self.level] and msg.split(",")[0].count("player") >= REQUIREMENT[self.level]):
 				print(self.thread_number,"GO!!", msg.split(',')[0])
-				self.sock.send(str.encode("broadcast go!\n"))
+				self.sock.send(str.encode("broadcast go! " + str(self.level) + "\n"))
 				if (self.getmsg().count("dead")> 0):
 					return (None)
 				return ("incantation")
@@ -170,21 +175,19 @@ class Afficheur(Thread):
 			if (tic >= 3):
 				tic = 0
 		return ("look")
-			
+
 	def Broadcasted(self):
 		ready = False
 		rotate = 1
 		cible = BROADCASTERS[self.level]
-
 		while (BROADCASTERS[self.level] != -1 and cible == BROADCASTERS[self.level]):
 			msg = self.getmsg()
-			if (msg.count("message 0, go!") > 0):
+			if (msg.count("message 0, go! " + str(self.level)) > 0):
 				return ("incantation")
 			elif (msg.count("message 0, beacon " + str(self.level)) > 0 and ready == False):
 				self.sock.send(str.encode("broadcast ready " + str(self.level) + "\n"))
 				ready = True
 			elif (msg.count("beacon " + str(self.level)) > 0):
-				
 				try:
 					index = int(msg.split(" ")[1][0])
 				except:
@@ -201,11 +204,11 @@ class Afficheur(Thread):
 			if (msg.count("dead") > 0 or len(msg) == 0):
 				print(self.thread_number, "dead broadcasted")
 				return (None)
-			if (self.inventory[0] <= 5):
+			if (self.inventory[0] <= 7):
 				return "look"
 			if (rotate % 10 == 0):
 				self.sock.send(str.encode("inventory\n"))
-			rotate = (rotate + 1) % 10
+			rotate = (rotate + 1) % 5
 		if (ready == True):
 			return ("incantation")
 		return ("look")
