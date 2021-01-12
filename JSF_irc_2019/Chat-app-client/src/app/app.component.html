@@ -1,0 +1,55 @@
+<nb-layout>
+    <nb-layout-header  fixed>
+        <h2>
+            Tchatcheur site officiel de tchatchage<br>
+        Bienvenue!
+        </h2>
+    </nb-layout-header>
+
+    <nb-layout-column>
+
+        <!-- module html-->
+        <app-chanels></app-chanels>
+        
+    </nb-layout-column>
+
+    <!-- Sidebar / Liste des chanels -->
+    <nb-sidebar>
+        <h5 style="text-decoration: underline;">Liste des chats</h5>
+       
+        <nb-card status="warning">
+              <nb-card-header>Your Chat Server</nb-card-header>
+              <nb-card-body>
+                  <nb-list class="chanels">
+                          <nb-list-item *ngFor="let chanel of chanels" 
+                    (click)="onSelect(chanel)">{{ chanel }}
+
+                            <a (click)="delete_room(chanel)">
+                                
+                                <img src="../assets/icons8-poubelle-26.png" style="margin-left: 15px;">
+
+                            </a > 
+                
+                       </nb-list-item>
+                    </nb-list>
+              </nb-card-body>
+        </nb-card>
+
+        <form class="create-serv-form" method="POST" action="http://localhost:3000/room" target="dummyframe">
+              <input nbInput class="create-serv-input" name="room" type="text" sus="warning" placeholder="Name of your room" id="ID_INPUT" >
+              <button nbButton class="create-serv-button" status="warning" type="submit">Create room chat</button>
+        </form>    
+        <br> 
+    </nb-sidebar>
+
+    <!-- Routes -->
+    <router-outlet>
+    </router-outlet>
+
+    <!-- Liste des utilisateurs-->
+    <nb-sidebar style="margin-right: 0px;">
+        <h5 style="text-decoration: underline;">Utilisateurs</h5>
+        <li *ngFor="let user of users"> {{ user }} </li>
+    </nb-sidebar>
+</nb-layout>
+<iframe name="dummyframe" id="dummyframe" style="display: none;"></iframe>

@@ -1,0 +1,43 @@
+{{ partial "header" .}}
+
+<h1 class="content-margin">Evenements:</h1>
+
+<button class="btntoggle" onclick="$('#anciens').toggle()">Afficher / Masquer les anciens evenements</button>
+<button class="btntoggle" onclick="$('#futurs').toggle()">Afficher / Masquer les futurs evenements</button>
+
+<div class="article content-margin" id="futurs">
+	<h2>Prochains Évenements:</h2>
+	{{range where .Site.RegularPages "Section" "events"}}
+		{{ if (time .Params.when).After now }}
+		<div class="delimitor"></div>
+		<h2><a href="{{ .Permalink }}">
+			{{ if .Params.important }}
+				&#11088;
+			{{ end }}
+			{{ .Title }}
+		</a></h2>
+		<time>{{ dateFormat "Mon, Jan 2, 2006" .Params.when }}</time>
+		<p>{{ .Description }}</p>
+		{{end}}
+	{{ end }}
+</div>
+
+<div class="article content-margin" id="anciens">
+	<h2>Évenements passés:</h2>
+	{{range where .Site.RegularPages "Section" "events"}}
+		{{ if (time .Params.when).Before now }}
+		<div class="delimitor"></div>
+		<h2><a href="{{ .Permalink }}">
+			{{ if .Params.important }}
+				&#11088;
+			{{ end }}
+			{{ .Title }}
+		</a></h2>
+		<time>{{ dateFormat "Mon, Jan 2, 2006" .Params.when }}</time>
+		<p>{{ .Description }}</p>
+		{{end}}
+	{{ end }}
+</div>
+	
+
+{{ partial "footer"}}

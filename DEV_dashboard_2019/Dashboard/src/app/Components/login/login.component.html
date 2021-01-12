@@ -1,0 +1,38 @@
+
+
+<!-- Formulaire de login avec un bouton pour s'inscrire -->
+<div class="row">
+    <div class="col-md-6 offset-md-3 mt-4">
+      <h2 style="text-align: center;">Login</h2>  
+      
+      <!-- Formulaire pour se connecter -->
+      <form #f="ngForm">
+            <div class="form-group">
+              <label for="loginUsername">Username</label>
+              <input (keyup)="usernameLogin($event)"
+                      name="username"
+                      ngModel required #username="ngModel" 
+                      type="text" 
+                      class="form-control" 
+                      id="loginUsername"
+                      >
+            </div>
+
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input (keyup)="passwordLogin($event)" 
+                      type="password" 
+                      class="form-control"
+                      name="password"
+                      ngModel required #password="ngModel"  
+                      id="ID_password">
+            </div>
+
+            <div class="form-group">
+              <label class="form-check-label">You do not have an account ?</label>
+              <a [routerLink]="['/register']" routerLinkActive="active"> Register </a>
+            </div>
+            <button type="submit" (click)="login()" class="btn btn-primary">Login</button>
+      </form>
+    </div>
+</div>

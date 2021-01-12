@@ -1,0 +1,15 @@
+
+<div class="container">
+
+<!-- Nos widgets -->
+<div class="widgets">
+
+  <app-widgets *ngIf="isDisplay('weather')" id="weather"></app-widgets>
+  <app-youtube *ngIf="isDisplay('youtube')" id="youtube"></app-youtube>
+  <app-steam *ngIf="isDisplay('steam')" id="steam"></app-steam>
+  <app-spotify *ngIf="isDisplay('spotify')" id="spotify"></app-spotify>
+  <app-google-maps *ngIf="isDisplay('google-maps')" id="google-maps"></app-google-maps>
+  
+</div>
+
+</div>

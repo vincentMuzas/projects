@@ -1,0 +1,23 @@
+{{ partial "header" . }}
+
+<div class="content-margin">
+	<h1>Membres du Conseil-municipal:</h1>
+	{{ range .Pages }}
+		<div class="delimitor"></div>
+		<div class="description-img">
+			{{ $image := printf "images/%s" (.Params.photo | default "placeholder.png") }}
+			<img src="{{ $image | absURL }}"/>
+			<div>
+				<h2>
+					{{ upper .Params.lastName}} {{.Params.firstNames}}
+				</h2>
+				<p>
+					Position: {{.Params.role}}
+					{{.Content}}
+				</p>
+			</div>
+		</div>
+	{{ end }}
+</div>
+
+{{ partial "footer" }}

@@ -1,0 +1,48 @@
+<!-- Pense Bete -->
+<div class="container" style="display: flex; align-items: center;justify-content: space-between;">
+
+    <div id="note" class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+          <strong class="mr-auto">Pense-bête</strong>
+          <small class="text-muted">close</small>
+          <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" (click)="closeNote();" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="toast-body">
+            <div style="width:300px; display:table">
+                <input type="text" id="MyInput" style="display:table-cell; width:100%" />
+            </div>
+        </div>
+      </div>
+
+    
+    <!-- Card METEO -->  
+    <div  *ngIf="isDisplay('weather') == 'true'" class="card text-center" style="width: 18rem;">
+        <div  class="card-body">
+    
+            <div class="row justify-content-center">
+    
+            <div id="divWeatherMain" style="margin-left: 0%;"> 
+                <div *ngIf="WeatherData.isDay" class="weatherWidgetRow">
+                    <i class="fas fa-3x fa-sun sun"></i>  
+                </div>   
+                <div *ngIf="!WeatherData.isDay" class="weatherWidgetRow">
+                    <i class="fas fa-3x fa-moon moon"></i>  
+                </div>   
+                <div class="weatherWidgetRow cloudDiv">
+                    <i class="fas fa-cloud fa-3x cloud"></i>
+                </div>
+                <div class="weatherWidgetRow" style="font-size: 32px;margin-top: 5px;">{{WeatherData.temp_celcius}}°</div>
+                <div class="weatherWidgetRow" style="font-size: 12px;">{{WeatherData.temp_min}}° / {{WeatherData.temp_max}}°</div>
+                <div class="weatherWidgetRow" style="font-size: 12px;">Feels Like: {{WeatherData.temp_feels_like}}°</div>
+                <div class="weatherWidgetRow" style="font-size: 25px;margin-top: 10px;">{{WeatherData.name}}</div>
+                <div class="weatherWidgetRow" style="font-size: 12px;">Humidity: {{WeatherData.main.humidity}}%</div>
+            </div> 
+             </div>
+    
+            <button id="weather" style="margin-top: 2px;" (click)="remove_widget($event);" class="btn btn-primary">Remove</button>
+        </div>
+      </div>
+
+</div>

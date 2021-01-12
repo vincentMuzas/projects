@@ -1,0 +1,74 @@
+<body>
+  <div class="container" style="margin-top: 5%;">
+    <div class="row justify-content-center">
+      
+      <!-- Card du service STEAM -->
+      <div class="col-md-4">        
+        <div class="card" style="width: 20rem;">
+          <img style="height: 200px;" src="../../../assets/RSS.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="Steam">Flux</h5>
+            <p class="card-text">IT watch.</p>
+            <button id="steam" type="button" class="btn btn-outline-primary" (click)="follow($event)">Follow</button>
+        </div>
+      </div>
+     </div>
+     
+      <!-- Card du service ONE DRIVE -->
+      <div class="col-md-4">        
+        <div class="card" style="width: 20rem;">
+          <img style="height: 200px;" src="../../../assets/YouTube.gif" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">YouTube</h5>
+            <p class="card-text">Watch the top 1 trending video and his stats.</p>
+            <button id="youtube" type="button" class="btn btn-outline-primary" (click)="follow($event)">Follow</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card du service SPOTIFY -->
+      <div class="col-md-4">        
+        <div class="card" style="width: 20rem;">
+          <img style="height: 200px;" src="../../../assets/276f273d11f8b9dbc0a9c55bb38ea8c6.gif" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Spotify</h5>
+            <p class="card-text">See the top 5 songs in France, and play them.</p>
+            <button id="spotify" type="button" class="btn btn-outline-primary" (click)="follow($event)">Follow</button>
+          </div>
+        </div>        
+      </div>
+
+      <!-- Card du service METEO -->
+      <div class="col-md-4">        
+        <div class="card" style="width: 20rem; margin-top: 5%;">
+          <img style="height: 200px;" src="../../../assets/meteo.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Weather</h5>
+            <p class="card-text">Current weather of your city.</p>
+            <button id="weather" type="button" class="btn btn-outline-primary" (click)="follow($event)">Follow</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card du service GOOGLE-MAPS -->
+      <div class="col-md-4">        
+        <div class="card" style="width: 20rem; margin-top: 5%;">
+          <img style="height: 200px;" src="../../../assets/maps.png" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Maps</h5>
+            <p class="card-text">Our location.</p>
+            <button id="google-maps" type="button" class="btn btn-outline-primary" (click)="follow($event)">Follow</button>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+
+    <!-- Boutton Terminer la saisie -->
+    <div style="text-align: center; margin-top: 15%;">
+      <a href="/home" (click)="Submit()" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">Submit</a>
+    </div>
+
+    </div>
+
+</body>

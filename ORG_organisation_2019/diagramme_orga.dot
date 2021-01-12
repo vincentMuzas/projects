@@ -1,0 +1,10 @@
+digraph {
+    graph [overlap=scale , splines=true , rankdir=LR];
+    "Stéphane Contrepois" -> { "Eléonore Hermand" "Aurore Beugniez" "Julien Hourrègue" };
+    "Aurore Beugniez" -> { "Marine Aubagna" "Eric Vibert" "Justine Gicquel" };
+    "Marine Aubagna" -> { "Anastasia Shapovalova" };
+    "Eric Vibert" -> { "Alexandra Boudier" "Edouard Renault" "Emmanuelle Maux" "Marielle Kornberg" "Line Mpe" };
+    "Justine Gicquel" -> { "Lisa Codina" "Pol Barrière" "Jordan Nectoux" "Ola Baher" "Benjamin Dentaux" };
+    "Julien Hourrègue" -> { "Christophe Tiet" "David Arpin" };
+    "David Arpin" -> { "Olivier Prudente" "Laurent Huzard" "Mathieu Gond" "Valentin Noël" };
+}

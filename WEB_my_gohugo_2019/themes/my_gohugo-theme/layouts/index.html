@@ -1,0 +1,20 @@
+{{ partial "header" .}}
+
+<div class=" content-margin">
+	<h1>Bienvenu sur le site projet My_gohugo!</h1>
+	<p>Vous vous trouvez à la page d'acceuil</p>
+</div>
+
+<div class="article content-margin">
+	<h2>Prochains Évenements importants:</h2>
+		{{range where .Site.RegularPages "Section" "events"}}
+			{{ if and ((time .Params.when).After now) (.Params.important) }}
+			<div class="delimitor"></div>
+			<h2><a href="{{ .Permalink }}">{{ .Title }}</a></h2>
+			<time>{{ dateFormat "Mon, Jan 2, 2006" .Params.when }}</time>
+			<p>{{ .Description }}</p>
+			{{end}}
+		{{ end }}
+</div>
+
+{{ partial "footer"}}

@@ -1,0 +1,59 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	
+	<link rel="stylesheet" type="text/css" href="/css/style.css" />
+
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js" integrity="sha256-FtWfRI+thWlNz2sB3SJbwKx5PgMyKIVgwHCTwa3biXc=" crossorigin="anonymous"></script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
+
+	<script src="/js/searchbar.js"></script>
+</head>
+<body lang="en">
+<div class="content">
+	<a href="/"><img src="/images/logo.png" style="height: 100px" class="content-margin"></a>
+<div class="menu">
+	<a href="/">Accueil</a>
+	<div class="dropdown">
+	<button class="dropbtn"><a href="/events">Evènements</a></button>
+		<div class="dropdown-content">
+			<a href="/events">Tous</a>
+		</div>
+	</div>
+	<a href="/associations">Les associations</a>
+	<a href="/conseil-municipal">Conseil municipal</a>
+	<a href="#">Contact</a>
+	<div class="search" id="search">
+		<input type="text" placeholder="Search site..." v-model="txt" @keyup="search()" @blur="close()" maxlength="50">
+		<div class="search-results" :style="{'display': showresult?'block':'none'}">
+			<a v-for="item in result" :href="item.url">{{ item.title }}</a>
+		</div>
+	</div>
+</div>
+
+<div class="content-margin">
+	<h1>Evenement passé 1</h1>
+	<div class="delimitor"></div>
+	<div class="meta">
+		<time>Tue, Sep 10, 2019</time><br>
+		addresse: 2 rue michel 31000 Toulouse
+	</div>
+	<br>
+	Description: oui<br>
+	Association: <a href="/associations/tactac">tactac</a>
+	<div class="delimitor"></div>
+	<p>test</p>
+
+</div>
+
+<div class="footer">
+		<div class="mapouter"><div class="gmap_canvas"><iframe width="100%" height="500" id="gmap_canvas" src="https://maps.google.com/maps?q=Epitech%20Toulouse%2C%20Boulevard%20de%20la%20Marquette%2C%20Toulouse&t=&z=15&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><a href="https://www.embedgooglemap.net/blog/elementor-pro-discount-code-review/"></a></div><style>.mapouter{position:relative;text-align:right;height:500px;width:100%;}.gmap_canvas {overflow:hidden;background:none!important;height:500px;width:100%;}</style></div>
+</div>
+</div>
+</body>
+
+</html>

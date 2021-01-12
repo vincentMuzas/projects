@@ -1,0 +1,21 @@
+
+
+
+<div  *ngIf="isDisplay('google-maps') == 'true' || rooter.url == '/google-maps'" class="jumbotron">
+  <h1 style="text-align: center;" class="display-4">Find us !</h1>
+  
+  <div class="maps">
+    <agm-map [latitude]="latitude" [longitude]="longitude" (mapClick)="onChoseLocation($event)">
+      <agm-marker
+        [latitude]="latitude"
+        [longitude]="longitude"
+        *ngIf="locationChosen"></agm-marker>
+    </agm-map>
+    
+  </div>
+
+  <hr class="my-4">
+  <div class="wrapper">
+    <a id="google-maps" style="text-align: right; color: white;" class="btn btn-primary" (click)="remove_widget($event);" role="button">Remove</a>
+  </div>
+  </div>

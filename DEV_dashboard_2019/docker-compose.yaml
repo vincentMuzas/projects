@@ -1,0 +1,24 @@
+version: '3' # docker-compose version
+
+services:
+  angular: # Service name
+    build: Dashboard # DockerFile directory
+    ports:
+      - "4200:4200" # Running port 
+    depends_on:
+      - express
+    
+  express:
+    build: server
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+
+  mysql:
+    image: mysql
+    environment:
+        MYSQL_ROOT_PASSWORD: 
+        MYSQL_DATABASE: dashboard
+    ports:
+      - "3306:3306"

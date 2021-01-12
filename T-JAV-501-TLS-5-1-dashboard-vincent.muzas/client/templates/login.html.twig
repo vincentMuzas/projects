@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard - login{% endblock %}
+
+{% block body %}
+<form action="{{ server_loc }}/login" method="post" successlocation="/">
+    <div class="row">
+        <div class="col s12 m8 offset-m2 l6 offset-l3">
+            <h3>Login:</h3>
+            <br>
+            <div class="input-field">
+                <input type="email" name="email" id="email" required>
+                <label for="email">email</label>
+            </div>
+            <div class="input-field">
+                <input type="password" name="password" id="password" required>
+                <label for="password">password</label>
+            </div>
+            <input type="hidden" name="token" value="" id="token_input">
+            <input class="btn" type="submit" value="Login">
+            <a class="btn teal lighten-3" href="/register">Register</a>
+        </div>
+    </div>
+</form>
+{% endblock %}

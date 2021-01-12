@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard - main{% endblock %}
+
+{% block body %}
+<h3>Add a new widget</h3>
+<form class="input-field" action="{{ server_loc }}/widget" method="post" successlocation="/">
+    <div class="row">
+        <input type="hidden" name="token" id="token_input">
+        <input type="hidden" name="serviceName" id="ServiceName">
+        <div class="col s12">
+            <select id="WidgetSelector" name="widgetName">
+                <option value="" disabled selected>Choose your Widget</option>
+            </select>
+        </div>
+        <div class="col s12" id="FormParameters"></div>
+        <div class="col m2">
+            <input type="submit" value="Submit" class="btn">
+        </div>
+    </div>
+</form>
+<div id="widgetContainer" class="row"></div>
+{% endblock %}
+
+{% block javascripts %}
+    <script>
+        var serverRoute = "{{ server_loc }}";
+    </script>
+    <script src="/js/widgets.js"></script>
+{% endblock %}

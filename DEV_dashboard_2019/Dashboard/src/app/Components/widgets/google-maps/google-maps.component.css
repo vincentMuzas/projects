@@ -1,0 +1,13 @@
+.maps{
+  margin-left: 25%;
+}
+agm-map {
+    height: 500px;
+    width: 500px;
+  }
+
+  .wrapper {
+    margin-top: 3%;
+    text-align: center;
+}
+

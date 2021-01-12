@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My New Hugo Site</title>
+    <link>/</link>
+    <description>Recent content on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>fr-fr</language>
+    <lastBuildDate>Fri, 27 Sep 2019 15:04:21 +0200</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Search</title>
+      <link>/search/index.json</link>
+      <pubDate>Fri, 27 Sep 2019 15:04:21 +0200</pubDate>
+      
+      <guid>/search/index.json</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Evenement passé 1</title>
+      <link>/events/evenement_passe/</link>
+      <pubDate>Wed, 25 Sep 2019 16:19:10 +0200</pubDate>
+      
+      <guid>/events/evenement_passe/</guid>
+      <description>test</description>
+    </item>
+    
+    <item>
+      <title>Rendu projet</title>
+      <link>/events/titre/</link>
+      <pubDate>Wed, 25 Sep 2019 16:19:10 +0200</pubDate>
+      
+      <guid>/events/titre/</guid>
+      <description>Contenu</description>
+    </item>
+    
+    <item>
+      <title>test</title>
+      <link>/events/test/</link>
+      <pubDate>Wed, 25 Sep 2019 16:19:10 +0200</pubDate>
+      
+      <guid>/events/test/</guid>
+      <description>test</description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/conseil-municipal/michel/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/conseil-municipal/michel/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/conseil-municipal/personne/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/conseil-municipal/personne/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title></title>
+      <link>/conseil-municipal/reddit/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/conseil-municipal/reddit/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>tactac</title>
+      <link>/associations/tactac-copy-2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/associations/tactac-copy-2/</guid>
+      <description>tactac associations</description>
+    </item>
+    
+    <item>
+      <title>tactac</title>
+      <link>/associations/tactac-copy/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/associations/tactac-copy/</guid>
+      <description>tactac associations</description>
+    </item>
+    
+    <item>
+      <title>tictac</title>
+      <link>/associations/tactac/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/associations/tactac/</guid>
+      <description>tactac associations</description>
+    </item>
+    
+  </channel>
+</rss>

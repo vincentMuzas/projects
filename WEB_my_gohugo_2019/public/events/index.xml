@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Events on My New Hugo Site</title>
+    <link>/events/</link>
+    <description>Recent content in Events on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>fr-fr</language>
+    <lastBuildDate>Wed, 25 Sep 2019 16:19:10 +0200</lastBuildDate>
+    
+	<atom:link href="/events/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Evenement passé 1</title>
+      <link>/events/evenement_passe/</link>
+      <pubDate>Wed, 25 Sep 2019 16:19:10 +0200</pubDate>
+      
+      <guid>/events/evenement_passe/</guid>
+      <description>test</description>
+    </item>
+    
+    <item>
+      <title>Rendu projet</title>
+      <link>/events/titre/</link>
+      <pubDate>Wed, 25 Sep 2019 16:19:10 +0200</pubDate>
+      
+      <guid>/events/titre/</guid>
+      <description>Contenu</description>
+    </item>
+    
+    <item>
+      <title>test</title>
+      <link>/events/test/</link>
+      <pubDate>Wed, 25 Sep 2019 16:19:10 +0200</pubDate>
+      
+      <guid>/events/test/</guid>
+      <description>test</description>
+    </item>
+    
+  </channel>
+</rss>

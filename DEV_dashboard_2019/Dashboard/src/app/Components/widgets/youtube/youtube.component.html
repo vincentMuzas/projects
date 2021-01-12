@@ -1,0 +1,37 @@
+
+<div *ngIf="isDisplay('youtube') == 'true' || rooter.url == '/youtube'" class="jumbotron">
+  <h1 style="text-align: center;" class="display-4">Latest Nota Bene YouTube video</h1>
+  
+  <div *ngIf="videoId" >
+    <youtube-player class="displayed" [videoId]=videoId></youtube-player>
+    <div *ngIf="videoId" class="stats">
+      <a (click)="like();">
+        <img src="../../../../assets/like.png">
+        {{Likes}} 
+      </a>
+      <a (click)="dislike();">
+        <img src="../../../../assets/dislike.png">
+        {{Dislikes}}
+      </a>
+      <a>
+        <img src="../../../../assets/comment.png">
+        {{commentCount}}</a>
+    </div>
+  </div>
+
+  <hr class="my-4">
+
+  <ul class="list-group list-group-flush">
+    <h4 style="text-align: center; margin-top: 2%;">First 5 comments of this video</h4>
+    <li *ngFor="let comment of Top5Comments" class="list-group-item">
+      <p class="text-muted">
+        {{ comment }}
+      </p>
+    </li>
+  </ul>
+  <div class="wrapper">
+    <a id="youtube" style="text-align: center; color: white;" class="btn btn-primary" (click)="remove_widget($event);" role="button">Remove</a>
+  </div>
+  </div>
+ 
+

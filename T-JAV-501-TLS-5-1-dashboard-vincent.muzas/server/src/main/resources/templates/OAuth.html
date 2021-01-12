@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>OAuth</title>
+</head>
+<body>
+
+<div style="text-align: center;">
+    <a th:href="${@config.get('oauth.google.auth_button_url')}"><input value="Sign in with Google" type="button"></a>
+    <a th:href="${@config.get('oauth.google.enable_services_button_url')}"><input value="Enable Google services" type="button"></a>
+    <br><br>
+    <a th:href="${@config.get('oauth.yammer.auth_button_url')}"><input value="Sign in with Yammer" type="button"></a>
+    <a th:href="${@config.get('oauth.yammer.enable_services_button_url')}"><input value="Enable Yammer services" type="button"></a>
+    <br><br>
+    <a th:href="${@config.get('oauth.twitter.auth_button_url')}"><input value="Sign in with Twitter" type="button"></a>
+    <a th:href="${@config.get('oauth.twitter.enable_services_button_url')}"><input value="Enable Twitter services" type="button"></a>
+</div>
+
+</body>
+</html>

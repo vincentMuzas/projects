@@ -1,0 +1,26 @@
+<div *ngIf="isDisplay('spotify') == 'true' || rooter.url == '/spotify'" class="jumbotron">
+
+    <h1 style="text-align: center;" class="display-4">Spotify : Playlist</h1>
+    <div class="wrapper">
+      <button style="text-align: center; color: black;" class="btn btn-success" (click)="connectSpotify();" >Connect to spotify</button>
+    </div>
+    <div >
+
+    </div>
+  
+    <hr class="my-4">
+  
+    <ul class="list-group list-group-flush">
+      
+      <div class="row row-cols-1 row-cols-md-2">
+
+        <iframe src="https://open.spotify.com/embed/album/2zgjFPyhn0cMxKzW2IiGUT?si=mwPhCZ0tRhazrKqi1cuBmw" width="300" height="380" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+        <iframe src="https://open.spotify.com/follow/1/?uri=spotify:artist:2UwqpfQtNuhBwviIC0f2ie&size=detail&theme=light" width="300" height="56" scrolling="no" frameborder="0" style="border:none; overflow:hidden;" allowtransparency="true"></iframe>
+
+      </div>
+    </ul>
+
+    <div class="wrapper">
+      <a id="spotify" style="text-align: center; color: white;" class="btn btn-primary" (click)="remove_widget($event);" role="button">Remove</a>
+    </div>
+    </div>

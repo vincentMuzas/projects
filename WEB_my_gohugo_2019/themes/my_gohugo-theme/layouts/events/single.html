@@ -1,0 +1,20 @@
+{{ partial "header" . }}
+
+<div class="content-margin">
+	<h1>{{.Title}}</h1>
+	<div class="delimitor"></div>
+	<div class="meta">
+		<time>{{ dateFormat "Mon, Jan 2, 2006" .Params.when }}</time><br>
+		addresse: {{.Params.address}} {{.Params.postalCode}} {{.Params.city}}
+	</div>
+	<br>
+	Description: {{.Params.Description}}<br>
+	Association: <a href="/associations/{{.Params.association}}">{{.Params.association}}</a>
+	<div class="delimitor"></div>
+	{{ .Content }}
+	<div class="delimitor"></div>
+	<img src="{{.Params.image}}">
+
+</div>
+
+{{ partial "footer"}}

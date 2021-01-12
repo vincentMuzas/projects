@@ -1,0 +1,64 @@
+version: '3' # docker-compose version
+
+services:
+    poll: # Service name
+        build: poll # DockerFile directory
+        ports:
+            - "5000:80" # Running port 
+        networks:
+            - pool-tier
+        environment:
+            - HOST=redis
+    
+    redis:
+        image: "redis:latest"
+        command: ["redis-server", "--protected-mode", "no" ]
+        hostname: redis
+        networks:
+            - pool-tier
+            - back-tier
+        expose:
+            - "6379"
+
+    worker:
+        build: worker
+        networks:
+            - back-tier
+
+    result:
+        build: result
+        ports:
+            - "5002:4242"
+            - "5001:80"
+        networks:
+            - result-tier
+        environment:
+            - POSTGRES=postgres://postgres:password@db/postgres
+    
+    db:
+        image: "postgres:12.2-alpine"
+        environment: 
+            POSTGRESS_DB: "votes"
+            POSTGRES_PASSWORD: "password"
+            POSTGRES_DB: "postgres"
+        networks:
+            - result-tier
+            - back-tier
+        ports:
+            - "5432:5432"
+        volumes:
+            - ./schema.sql:/docker-entrypoint-initdb.d/schema.sql
+            - db-data:/var/lib/postgresql/data
+    
+
+networks:
+    pool-tier:
+        driver: bridge
+    result-tier:
+        driver: bridge
+    back-tier:
+        driver: bridge
+
+volumes:
+    db-data:
+        driver: local

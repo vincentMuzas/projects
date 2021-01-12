@@ -1,0 +1,11 @@
+*~
+\#*#
+*.dnu
+*.o
+.*project
+.settings/
+build/
+target/
+doc/
+a.out
+*.xml

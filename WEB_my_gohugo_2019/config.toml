@@ -1,0 +1,8 @@
+baseURL = ""
+DefaultContentLanguage = "fr"
+languageCode = "fr-fr"
+title = "My New Hugo Site"
+theme="my_gohugo-theme"
+logo = "/images.logo.png"
+css = "/images.style.css"
+background="/images.toulouse-canal-du-midi.jpg"

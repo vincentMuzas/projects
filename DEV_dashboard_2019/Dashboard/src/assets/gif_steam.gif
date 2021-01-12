@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>Flux RSS - Arc-en-Ciel 1</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<meta name="description" lang="fr" content="">
+<meta name="keywords" content="">
+<link rel="stylesheet" type="text/css" media="all" href="css/aec1.css">
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<script type="text/javascript" src="js/jquery-1.8.2.js"></script><script type="text/javascript" src="js/jquery-ui.js"></script><script type="text/javascript" src="js/slides.min.jquery.js"></script><script type="text/javascript" src="js/menu.js"></script><script type="text/javascript" src="js/cookie.js"></script><script type="text/javascript" src="js/oxhr.js"></script><script type="text/javascript">
+			// Menu
+			jQuery(function(){
+				jQuery('ul.sf-menu').superfish();
+			});
+		</script>
+</head>
+<body>
+<span style="display:none"><script type="text/javascript">
+  var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-46862285-3']);
+	_gaq.push(['_setDomainName', 'arc-en-ciel1.fr']);
+	_gaq.push(['_set', 'title', 'Flux RSS']);
+	_gaq.push(['_trackPageview', '/?Page=MenuRSS']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+	function trackOutboundLink(link) { 
+		var target = '_self';
+		if(link.hasAttribute('target')) target = link.getAttribute('target');
+		
+		var title = '';
+		if(link.hasAttribute('title')) title = link.getAttribute('title');
+		else if(link.hasAttribute('hiddenTitle')) title = link.getAttribute('hiddenTitle');
+
+		var hrefUserDocs = 'http://userdocs.arc-en-ciel1.fr/';
+		hrefUserDocs = hrefUserDocs.replace('http://','');
+		var category = 'Lien externe';
+		if(link.href.search(hrefUserDocs) > 0) category = 'Userdocs';
+/*
+console.clear();
+console.debug('hrefUserDocs = %s', hrefUserDocs);
+console.debug('category = %s', category);
+console.debug('title = %s', title);
+console.debug('target = %s', target);
+*/
+		try { 
+			_gaq.push(['_trackEvent', category , link.href, title]); 
+		}
+		catch(err){}
+		 
+		setTimeout(function() {
+			window.open(link.href, target);
+		}, 200);
+		return false;
+	}
+	 
+</script></span>
+		<div class="root_div contentpage">
+
+
+			<div class="header">
+				<a href="?Page=Homepage"><div class="logo"></div></a>
+				<div class="header_droite">
+					<div class="meteo">
+						<div id="c_c2de7b806b3d90ef099c31c642dd7b5d">
+							<a href="http://www.meteorama.fr/m%C3%A9t%C3%A9o-hazebrouck.html" target="_blank">Météo à Hazebrouck</a>
+						</div>
+
+						<script type="text/javascript" src="js/meteorama-widget.js"></script>
+</div>
+
+					<div class="espace_usager">
+						Agence commerciale de Dunkerque : <b>03 28 59 62 80</b>
+					</div>
+				</div>
+
+				<div class="background_menu">
+					<div id="menu">
+<ul class="sf-menu">
+<li class="cg59"><a href="http://www.hautsdefrance.fr/" target="_blank" hiddentitle="Région Hauts-de-France" onclick="return trackOutboundLink(this);"></a></li>
+<li>
+<a href="#" hiddentitle="Se déplacer"><span class="bg_left"></span><span class="bg_center">Se déplacer</span><span class="bg_right"></span></a><ul>
+<li><a href="?Page=Horaires" hiddentitle="Horaires">Horaires</a></li>
+<li><a href="?Page=Lignes" hiddentitle="Lignes">Lignes</a></li>
+<li><a href="?Page=Plans" hiddentitle="Plans">Plans</a></li>
+<li><a href="?Page=Destinations_Favorites" hiddentitle="Destinations Favorites">Destinations Favorites</a></li>
+</ul>
+</li>
+<li>
+<a href="#" hiddentitle="Tarifs"><span class="bg_left"></span><span class="bg_center">Tarifs</span><span class="bg_right"></span></a><ul>
+<li><a href="?Page=RechargerCPP" hiddentitle="Recharger ma carte Pass Pass">Recharger ma carte Pass Pass</a></li>
+<li><a href="?Page=MenuCPP" hiddentitle="La carte Pass Pass">La carte Pass Pass</a></li>
+<li><a href="?Page=MenuTarifs" hiddentitle="Titres de transport">Titres de transport</a></li>
+<li><a href="?Page=VoyagezEnRegle" hiddentitle="Voyager en règle">Voyager en règle</a></li>
+</ul>
+</li>
+<li>
+<a href="#" hiddentitle="Actualités"><span class="bg_left"></span><span class="bg_center">Actualités</span><span class="bg_right"></span></a><ul>
+<li><a href="?Page=FlashInfo" hiddentitle="Flash-infos">Flash-infos</a></li>
+<li><a href="?Page=HomePage" hiddentitle="Bienvenue sur le site Arc-en-Ciel 1">Bienvenue sur le site Arc-en-Ciel 1</a></li>
+<li><a href="?Page=MenuInfos" hiddentitle="Informations">Informations</a></li>
+<li><a href="?Page=MenuRSS" hiddentitle="Flux RSS">Flux RSS</a></li>
+</ul>
+</li>
+<li>
+<a href="#" hiddentitle="Contact"><span class="bg_left"></span><span class="bg_center">Contact</span><span class="bg_right"></span></a><ul>
+<li><a href="?Page=QuiSommesNous" hiddentitle="Qui sommes-nous ?">Qui sommes-nous ?</a></li>
+<li><a href="?Page=NosCoordonnees" hiddentitle="Nos coordonnées">Nos coordonnées</a></li>
+<li><a href="?Page=MenuContacts" hiddentitle="Contactez-nous">Contactez-nous</a></li>
+<li><a href="?Page=MenuPartenaires" hiddentitle="Partenaires">Partenaires</a></li>
+</ul>
+</li>
+</ul>
+
+					</div>
+				</div>
+			</div>
+
+			
+			<div class="page_body">
+
+				
+				<div class="single_column">
+					<div class="Rubrique">
+						<a href="?Page=Homepage" class="LienHomepage"></a>
+						<div class="Titre1">Flux RSS</div>
+						<div class="Ombre"></div>
+
+						<div class="ContenuRubriqueAvecMargesInterieures" PageId="MenuRSS" Layout="content" Caption="Flux RSS" UserContentId="MenuRSS">
+<p style="text-align: center;">
+ <span style="color: rgb(0, 0, 128);"><span style="font-size: 14px;"><span style="font-family: verdana, geneva, sans-serif;"><strong>Suivez toutes nos actualités via notre fil RSS en cliquant ci-dessous :</strong></span></span></span></p>
+<p style="text-align: center;">
+ <a href="http://rss.arc-en-ciel1.fr/" target="_self"><img alt="" src="http://userdocs.arc-en-ciel2.fr/MAJ/RSS.png" style="width: 500px; height: 500px;"></a></p>
+<p style="text-align: center;">
+ <a href="http://www.arc-en-ciel1.fr/?Page=Plus_fil_RSS"><span style="color: rgb(75, 0, 130);"><span style="font-size: 14px;"><span style="font-family: verdana, geneva, sans-serif;">Vous voulez en savoir plus sur les flux RSS ? Cliquez ici.</span></span></span></a></p>
+</div>
+						
+					</div>
+					<div class="Ombre"></div>
+				</div>
+
+				<div class="clear"></div>
+
+				<div class="left_column">
+					<div class="bloc_acteur">
+						<div><ul class="ul_left"><li><a href="?Page=HomePage" hiddentitle="Bienvenue sur le site Arc-en-Ciel 1">Bienvenue sur le site Arc-en-Ciel 1</a></li></ul></div>
+						<div><ul class="ul_middle"><li><a href="?Page=Intermodalite" hiddentitle="Intermodalité et autres réseaux">Intermodalité et autres réseaux</a></li></ul></div>
+						<div><ul class="ul_right">
+<li><a href="?Page=Accessibilite" hiddentitle="Accessibilité pour tous">Accessibilité pour tous</a></li>
+<li><a href="?Page=DeveloppementDurable" hiddentitle="Développement durable">Développement durable</a></li>
+</ul></div>
+					</div>
+					<div class="bloc_acteur_ombre"></div>
+				</div>
+
+				<div class="right_column">
+					<div class="clear passpass">
+						<a href="http://vad.arc-en-ciel1.fr/AEC1/" target="_blank"></a>
+					</div>
+				</div>
+
+				
+
+			</div>
+
+
+			<div class="footer">
+				<div class="menu">
+				<ul>
+<li class="first_child "><a href="?Page=SimpleContact" hiddentitle="Contactez-nous">Contact</a></li>
+<li><a href="?Page=PlanDuSite" hiddentitle="Plan du site">Plan du site</a></li>
+<li><a href="?Page=NosCoordonnees" hiddentitle="Nos coordonnées">Nos coordonnées</a></li>
+<li><a href="?Page=MentionsLegales" hiddentitle="Mentions légales">Mentions légales</a></li>
+<li>Création de site internet par </li>
+<li class="ss_sep">Lemon Interactive</li>
+<li class="ss_sep"> et </li>
+<li class="ss_sep">EXOSS Informatique</li>
+</ul>
+</div>
+			</div>
+		</div>
+	</body>
+</html>

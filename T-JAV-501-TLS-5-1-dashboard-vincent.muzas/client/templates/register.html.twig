@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Dashboard - register{% endblock %}
+
+{% block body %}
+    <form action="{{ server_loc }}/register" method="post" successlocation="/login">
+        <div class="row">
+            <div class="col s12 m8 offset-m2 l6 offset-l3">
+                <h3>Register:</h3><br>
+                <div class="input-field">
+                    <input type="email" name="email" id="email" required>
+                    <label for="email">email</label>
+                </div>
+                <div class="input-field">
+                    <input type="password" name="password" id="password" required>
+                    <label for="password">password</label>
+                </div>
+                <input type="hidden" name="token" value="" id="token_input">
+                <input class="btn" type="submit" value="submit">
+            </div>
+        </div>
+    </form>
+{% endblock %}
+
+{% block javascripts %}
+    <script type="text/javascript" src="/js/inputs.js"></script>
+    <script type="text/javascript" src="/js/register.js"></script>
+{% endblock %}

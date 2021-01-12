@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: PolLDeploy
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: PolLDeploy
+  template:
+    metadata:
+      labels:
+        app: PolLDeploy
+    spec:
+      restartPolicy: Always
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - web-store
+              topologyKey: "kubernetes.io/hostname"
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                    - store
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+        - image: epitechcontent/t-dop-600-poll:k8s
+          imagePullPolicy: Always
+          name: PolLDeploy
+          resources:
+            limits:
+              memory: "128M"
+          env:
+            - name: REDIS_HOST
+              valueFrom:
+                configMapKeyRef:
+                  name: redis.configmap
+                  key: REDIS_HOST
+          ports:
+            - containerPort: 80

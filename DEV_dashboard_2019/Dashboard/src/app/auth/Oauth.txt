@@ -1,0 +1,17 @@
+Etape 1 :
+    Aller sur Spotify API, créer le site et récuperer les infos client
+        client_id_spotify = "671b934038634cea956d82f5c5368770";
+        client_secret_spotify = "53a4f0b6eb2c425aad00d07c7fc4a731";
+    Inserer un site de fallback
+
+Etape 2 :
+    Récuperer le 'code' dans l'url de fallback
+        https://accounts.spotify.com/authorize?client_id=671b934038634cea956d82f5c5368770&scopes=playlist-read-private&response_type=code&redirect_uri=https%3A%2F%2Fwww.google.com%2F&scope=user-read-private%20user-read-email&state=34fFs29kd09
+
+Etape 3 :
+    Récuperer le Token grace à une requete POST : 
+        curl -H "Authorization: Basic NjcxYjkzNDAzODYzNGNlYTk1NmQ4MmY1YzUzNjg3NzA6NTNhNGYwYjZlYjJjNDI1YWFkMDBkMDdjN2ZjNGE3MzE" -d grant_type=authorization_code -d code=AQDGppOyPdb5El4BY_xVZfa60CXAV33D_-AfQfQ-w8jND1lbgawjkgiYfVP-6m31KcVz3kvuj9XpPkeJvP24YOU_PMoEfTITtkZ4l6s9oRV-YKcQ9WxuZa3FgfHNkXod-JriXflpscFBUbhGqckIwxeYWMRff0fFUf1ktBTUHYj8FzPdYTlqH8w4SLkucb-gIJSEsI2Vb1Gt9i_QkHDBoh478IGrHwP48yH5R1lOslUV&state=34fFs29kd09 -d redirect_uri=https%3A%2F%2Fwww.google.com%2F https://accounts.spotify.com/api/token
+
+Etape 4 :
+    Le  token est récuperer, l'utiliser pour récupéré les playlist    
+        {"access_token":"BQCC5zhq6V68N16KaDsJc5NsVG1HYhXJNsPY1cQQe2qDgyJugB9JSK2X4M4HEYsPHtiAUZ4Ay06JOgMIGxWYdH-L_YglsE1nuwY-T_y2ddD7dtJlMJmbxO94uLQiTmJMCcIaVf98a6x_i5tZcOJf2oqMiM0mlg","token_type":"Bearer","expires_in":3600,"refresh_token":"AQD_xgGQwsUtK1zGgUlZm7mzLRVXv54LnYGCQ2DvhNthVldLioNMYSxglbzja6LgUsz-YldOfP3_bMCNqOpeNSfBDXR5SDQVWToWhWVtH5-fHbsON-r3wkA5mDb-vxM3ED0","scope":"user-read-email user-read-private"} 

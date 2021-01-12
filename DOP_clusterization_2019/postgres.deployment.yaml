@@ -1,0 +1,44 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: PostgresqlDeployement
+  namespace: default
+
+spec:
+  replicas: 0
+
+  selector:
+    matchLabels:
+      app: PostgresqlDeployement
+  template:
+    metadata:
+      labels:
+        app: PostgresqlDeployement
+    spec:
+      restartPolicy: Always
+      volumes:
+        - name: beub
+          persistentVolumeClaim:
+            claimName: postgres-pv-claim
+      containers:
+        - image: postgres:12
+          imagePullPolicy: Always
+          name: PostgresqlDeployement
+          env:
+            - name: POSTGRES_DB
+              valueFrom:
+                configMapKeyRef:
+                  name: postgres.configmap.yaml
+                  key: postgres_db
+            - name: POSTGRES_USER
+              valueFrom:
+                secretKeyRef:
+                  name: postgres.secret
+                  key: postgres_user
+            - name: POSTGRES_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: postgres.secret
+                  key: postgres_password
+          ports:
+            - containerPort: 5432

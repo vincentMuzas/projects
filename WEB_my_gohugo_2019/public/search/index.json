@@ -1,0 +1,60 @@
+
+{ "results": [
+
+
+
+    {
+    "url": "/events/evenement_passe/",
+    "title": "Evenement passé 1",
+    "content": "test "
+    },
+
+    {
+    "url": "/events/titre/",
+    "title": "Rendu projet",
+    "content": "contenu "
+    },
+
+    {
+    "url": "/events/test/",
+    "title": "test",
+    "content": "test "
+    },
+
+    {
+    "url": "/conseil-municipal/michel/",
+    "title": "",
+    "content": ""
+    },
+
+    {
+    "url": "/conseil-municipal/personne/",
+    "title": "",
+    "content": ""
+    },
+
+    {
+    "url": "/conseil-municipal/reddit/",
+    "title": "",
+    "content": ""
+    },
+
+    {
+    "url": "/associations/tactac-copy-2/",
+    "title": "tactac",
+    "content": "tactac associations "
+    },
+
+    {
+    "url": "/associations/tactac-copy/",
+    "title": "tactac",
+    "content": "tactac associations "
+    },
+
+    {
+    "url": "/associations/tactac/",
+    "title": "tictac",
+    "content": "tactac associations "
+    }
+
+]}

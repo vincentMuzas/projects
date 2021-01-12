@@ -1,0 +1,53 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="/css/style.css" />
+	
+	<!-- js vue -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.17/vue.min.js" integrity="sha256-FtWfRI+thWlNz2sB3SJbwKx5PgMyKIVgwHCTwa3biXc=" crossorigin="anonymous"></script>
+	<!-- je axios -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.18.0/axios.min.js" integrity="sha256-mpnrJ5DpEZZkwkE1ZgkEQQJW/46CSEh/STrZKOB/qoM=" crossorigin="anonymous"></script>
+	<!-- script barre de recherche -->
+	<script src="/js/searchbar.js"></script>
+
+	<!-- jquery -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<!-- contact par AWS -->
+	<script src="/js/contact.js"></script>
+</head>
+
+<body lang="fr">
+<div id="sidebar">
+	<div class="search" id="search">
+		<input type="text" placeholder="Rechercher" v-model="txt" v-on="keyup: search()" @blur="close()" maxlength="50">
+		<div class="search-results" :style="{'display': showresult?'block':'none'}">
+			<a v-for="item in result" :href="item.url">{{ printf "{{ item.title }}" }}</a>
+		</div>
+	</div><br><br>
+	<div class="content-margin">
+		Associations importantes
+		<br>
+		{{range where .Site.RegularPages "Section" "associations"}}
+			{{ if eq .Params.important true }}
+				<div class="delimitor"></div>
+				<h1><a href="{{ .Permalink }}">{{ .Params.title }}</a></h1>
+				<p>{{ .Description }}</p>
+			{{ end }}
+		{{ end }}
+	</div>
+</div>
+<button onclick='$("#sidebar").toggle();' id="togglesidebar">afficher</button>
+<div class="content">
+	<header>
+		<a href="/"><img src="/images/logo.png" style="height: 100px" class="content-margin"></a>
+		<div class="menu">
+			<a href="/">Accueil</a>
+			<a href="/events">Evènements</a>
+			<a href="/associations">Les associations</a>
+			<a href="/conseil-municipal">Conseil municipal</a>
+			<a href="#contact-form">Contact</a>
+		</div>
+	</header>

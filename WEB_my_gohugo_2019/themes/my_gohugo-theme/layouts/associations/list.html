@@ -1,0 +1,25 @@
+{{ partial "header" . }}
+
+<div class="content-margin">
+	<h1>Liste des associations:</h1>
+	{{ range .Pages }}
+		<div class="delimitor"></div>
+		<div class="description-img">
+			{{ $image := printf "images/%s" (.Params.photo | default "placeholder.png") }}
+			<img src="{{ $image | absURL }}"/>
+			<div>
+				<h2>
+					{{ if .Params.important }}
+					&#11088;
+					{{ end }}
+					<a href="{{.Permalink}}">{{.Title}}</a>
+				</h2>
+				<p>
+					{{.Content}}
+				</p>
+			</div>
+		</div>
+	{{ end }}
+</div>
+
+{{ partial "footer" }}

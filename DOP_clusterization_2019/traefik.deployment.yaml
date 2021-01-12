@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: TraefikDeployemeny
+  namespace: kube-public
+
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: TraefikDeployemeny
+  template:
+    metadata:
+      labels:
+        app: TraefikDeployemeny
+    spec:
+      affinity:
+        podAntiAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - web-store
+              topologyKey: "kubernetes.io/hostname"
+        podAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            - labelSelector:
+                matchExpressions:
+                  - key: app
+                    operator: In
+                    values:
+                      - store
+              topologyKey: "kubernetes.io/hostname"
+      containers:
+        - image: traefik:1.7
+          imagePullPolicy: Always                         # 8
+          name: TraefikDeployemeny
+          ports:
+            - containerPort: 80

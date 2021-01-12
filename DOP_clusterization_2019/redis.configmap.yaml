@@ -1,0 +1,9 @@
+apiVersion: v1
+data:
+  redis_host: 127.0.0.1
+  REDIS_HOST: "REDIS_HOST"
+kind: ConfigMap
+metadata:
+  creationTimestamp: "2019-12-11T09:45:31Z"
+  name: redis.configmap
+  namespace: default

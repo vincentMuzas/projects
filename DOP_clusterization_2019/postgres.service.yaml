@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: PostgresqlService
+
+spec:
+  selector:
+    app: PostgresqlDeployement
+  ports:
+    - name: http
+      port: 5432
